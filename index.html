@@ -37,7 +37,7 @@
             min-height: 100vh;
         }
 
-        /* ── Grid lines background ── */
+        /* ── Background Grid ── */
         body::before {
             content: '';
             position: fixed;
@@ -60,442 +60,150 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .nav-logo {
-            font-family: var(--mono);
-            font-size: .78em;
-            color: var(--accent);
-            letter-spacing: .08em;
-            text-decoration: none;
-        }
+        .nav-logo { font-family: var(--mono); font-size: .78em; color: var(--accent); letter-spacing: .08em; text-decoration: none; }
         .nav-logo span { color: var(--muted); }
-
         .nav-links { display: flex; gap: 28px; }
-        .nav-links a {
-            font-family: var(--mono);
-            font-size: .75em;
-            color: var(--muted);
-            text-decoration: none;
-            letter-spacing: .08em;
-            transition: color .2s;
-        }
+        .nav-links a { font-family: var(--mono); font-size: .75em; color: var(--muted); text-decoration: none; letter-spacing: .08em; transition: color .2s; }
         .nav-links a:hover { color: var(--accent); }
-
         .nav-actions { display: flex; align-items: center; gap: 12px; }
 
         .btn-lang {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--muted);
-            padding: 5px 13px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-family: var(--mono);
-            font-size: .72em;
-            letter-spacing: .06em;
-            transition: all .2s;
-            position: relative;
+            background: transparent; border: 1px solid var(--border); color: var(--muted);
+            padding: 5px 13px; border-radius: 3px; cursor: pointer; font-family: var(--mono);
+            font-size: .72em; letter-spacing: .06em; transition: all .2s; position: relative;
         }
         .btn-lang:hover { border-color: var(--accent); color: var(--accent); }
 
         .lang-menu { position: relative; }
         .lang-dropdown {
-            display: none; position: absolute; right: 0; top: 110%;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            overflow: hidden;
-            min-width: 130px;
-            box-shadow: 0 8px 24px rgba(0,0,0,.4);
+            display: none; position: absolute; right: 0; top: 110%; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 4px; overflow: hidden; min-width: 130px; box-shadow: 0 8px 24px rgba(0,0,0,.4);
         }
         .lang-menu:hover .lang-dropdown { display: block; }
         .lang-dropdown a {
-            display: flex; align-items: center; gap: 8px;
-            padding: 9px 14px;
-            font-family: var(--mono);
-            font-size: .75em;
-            color: var(--muted);
-            text-decoration: none;
-            transition: background .15s, color .15s;
+            display: flex; align-items: center; gap: 8px; padding: 9px 14px; font-family: var(--mono);
+            font-size: .75em; color: var(--muted); text-decoration: none; transition: background .15s, color .15s;
         }
         .lang-dropdown a:hover { background: var(--tag-hover); color: var(--accent); }
 
         .btn-download {
-            display: flex; align-items: center; gap: 7px;
-            background: var(--accent);
-            color: #0d0f12;
-            padding: 6px 16px;
-            border-radius: 3px;
-            font-family: var(--mono);
-            font-size: .72em;
-            font-weight: 500;
-            letter-spacing: .06em;
-            text-decoration: none;
-            transition: opacity .2s;
+            display: flex; align-items: center; gap: 7px; background: var(--accent); color: #0d0f12;
+            padding: 6px 16px; border-radius: 3px; font-family: var(--mono); font-size: .72em;
+            font-weight: 500; letter-spacing: .06em; text-decoration: none; transition: opacity .2s;
         }
         .btn-download:hover { opacity: .85; }
 
         /* ── LAYOUT ── */
-        .wrapper {
-            position: relative; z-index: 1;
-            max-width: 1020px;
-            margin: 0 auto;
-            padding: 80px 24px 60px;
-        }
+        .wrapper { position: relative; z-index: 1; max-width: 1020px; margin: 0 auto; padding: 80px 24px 60px; }
 
         /* ── HERO ── */
         .hero {
-            display: grid;
-            grid-template-columns: 160px 1fr;
-            gap: 36px;
-            align-items: center;
-            padding: 48px 0 48px;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 56px;
+            display: grid; grid-template-columns: 160px 1fr; gap: 36px; align-items: center;
+            padding: 48px 0 48px; border-bottom: 1px solid var(--border); margin-bottom: 56px;
         }
-
-        .hero-photo {
-            position: relative;
-        }
-        .hero-photo img {
-            width: 140px; height: 140px;
-            border-radius: 4px;
-            object-fit: cover;
-            display: block;
-            filter: grayscale(20%);
-            border: 1px solid var(--border);
-        }
-        .hero-photo::after {
-            content: '';
-            position: absolute;
-            inset: -5px;
-            border: 1px solid var(--accent);
-            border-radius: 4px;
-            opacity: .3;
-            pointer-events: none;
-        }
-
-        .hero-info {}
-        .hero-label {
-            font-family: var(--mono);
-            font-size: .7em;
-            color: var(--accent);
-            letter-spacing: .14em;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-        .hero-name {
-            font-family: var(--display);
-            font-size: 2.6em;
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -.02em;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        .hero-title {
-            font-family: var(--mono);
-            font-size: .82em;
-            color: var(--muted);
-            letter-spacing: .04em;
-            margin-bottom: 18px;
-        }
-        .hero-contacts {
-            display: flex; flex-wrap: wrap; gap: 18px;
-        }
-        .hero-contacts a, .hero-contacts span {
-            font-family: var(--mono);
-            font-size: .72em;
-            color: var(--muted);
-            text-decoration: none;
-            display: flex; align-items: center; gap: 6px;
-            transition: color .2s;
-        }
+        .hero-photo { position: relative; }
+        .hero-photo img { width: 140px; height: 140px; border-radius: 4px; object-fit: cover; display: block; filter: grayscale(20%); border: 1px solid var(--border); }
+        .hero-photo::after { content: ''; position: absolute; inset: -5px; border: 1px solid var(--accent); border-radius: 4px; opacity: .3; pointer-events: none; }
+        
+        .hero-label { font-family: var(--mono); font-size: .7em; color: var(--accent); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 6px; }
+        .hero-name { font-family: var(--display); font-size: 2.6em; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; color: #fff; margin-bottom: 10px; }
+        .hero-title { font-family: var(--mono); font-size: .82em; color: var(--muted); letter-spacing: .04em; margin-bottom: 18px; }
+        .hero-contacts { display: flex; flex-wrap: wrap; gap: 18px; }
+        .hero-contacts a, .hero-contacts span { font-family: var(--mono); font-size: .72em; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color .2s; }
         .hero-contacts a:hover { color: var(--accent); }
         .hero-contacts i { color: var(--accent); font-size: .95em; }
 
+        /* ── CLIENT LOGOS ── */
+        .hero-logos { margin-top: 24px; display: flex; gap: 30px; align-items: center; flex-wrap: wrap; opacity: 0.7; }
+        .client-logo { height: 26px; filter: grayscale(100%) brightness(200%) opacity(0.5); transition: all 0.3s ease; }
+        .client-logo:hover { filter: grayscale(0%) brightness(100%) opacity(1); transform: scale(1.05); }
+
         /* ── SECTION HEADERS ── */
         .section-wrap { margin-bottom: 52px; }
-
-        .section-head {
-            display: flex; align-items: baseline; gap: 14px;
-            margin-bottom: 24px;
-        }
-        .section-num {
-            font-family: var(--mono);
-            font-size: .7em;
-            color: var(--accent);
-            letter-spacing: .12em;
-        }
-        .section-title {
-            font-family: var(--display);
-            font-size: 1.05em;
-            font-weight: 700;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: .08em;
-        }
-        .section-line {
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
+        .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 24px; }
+        .section-num { font-family: var(--mono); font-size: .7em; color: var(--accent); letter-spacing: .12em; }
+        .section-title { font-family: var(--display); font-size: 1.05em; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .08em; }
+        .section-line { flex: 1; height: 1px; background: var(--border); }
 
         /* ── SUMMARY ── */
-        .summary-text {
-            font-family: var(--serif);
-            font-size: 1.05em;
-            color: #b0bec5;
-            max-width: 720px;
-            font-style: italic;
-            font-weight: 300;
-            line-height: 1.8;
-            border-left: 2px solid var(--accent);
-            padding-left: 20px;
-        }
+        .summary-text { font-family: var(--serif); font-size: 1.05em; color: #b0bec5; max-width: 720px; font-style: italic; font-weight: 300; line-height: 1.8; border-left: 2px solid var(--accent); padding-left: 20px; }
 
         /* ── EXPERIENCE ── */
-        .job {
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            gap: 0 28px;
-            margin-bottom: 36px;
-            padding-bottom: 36px;
-            border-bottom: 1px solid var(--border);
-            animation: fadeUp .5s ease both;
-        }
+        .job { display: grid; grid-template-columns: 180px 1fr; gap: 0 28px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--border); animation: fadeUp .5s ease both; }
         .job:last-child { border-bottom: none; }
-
-        .job-meta {}
-        .job-dates {
-            font-family: var(--mono);
-            font-size: .68em;
-            color: var(--accent);
-            letter-spacing: .06em;
-            margin-bottom: 4px;
-        }
-        .job-company {
-            font-family: var(--display);
-            font-size: .95em;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 2px;
-        }
-        .job-location {
-            font-family: var(--mono);
-            font-size: .65em;
-            color: var(--muted);
-        }
-
-        .job-body {}
-        .job-role {
-            font-family: var(--mono);
-            font-size: .78em;
-            color: var(--accent2);
-            letter-spacing: .04em;
-            margin-bottom: 12px;
-        }
-
+        .job-dates { font-family: var(--mono); font-size: .68em; color: var(--accent); letter-spacing: .06em; margin-bottom: 4px; }
+        .job-company { font-family: var(--display); font-size: .95em; font-weight: 700; color: #fff; margin-bottom: 2px; }
+        .job-location { font-family: var(--mono); font-size: .65em; color: var(--muted); }
+        .job-role { font-family: var(--mono); font-size: .78em; color: var(--accent2); letter-spacing: .04em; margin-bottom: 12px; }
         .job-bullets { list-style: none; padding: 0; }
-        .job-bullets li {
-            font-size: .92em;
-            color: #94a3b8;
-            margin-bottom: 8px;
-            padding-left: 16px;
-            position: relative;
-            line-height: 1.65;
-        }
-        .job-bullets li::before {
-            content: '—';
-            position: absolute; left: 0;
-            color: var(--muted);
-            font-family: var(--mono);
-        }
-
+        .job-bullets li { font-size: .92em; color: #94a3b8; margin-bottom: 8px; padding-left: 16px; position: relative; line-height: 1.65; }
+        .job-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--muted); font-family: var(--mono); }
         .job-tags { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 7px; }
 
-        /* ── SKILL TAGS ── */
-        .tag {
-            font-family: var(--mono);
-            font-size: .65em;
-            letter-spacing: .06em;
-            padding: 4px 11px;
-            border-radius: 2px;
-            border: 1px solid var(--border);
-            background: var(--tag-bg);
-            color: var(--muted);
-            cursor: pointer;
-            transition: all .2s;
-            user-select: none;
-            display: inline-flex; align-items: center; gap: 5px;
-        }
-        .tag:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--tag-hover);
-        }
-        .tag.active {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: rgba(79,195,247,.12);
-        }
+        /* ── SKILL TAGS & CERTS ── */
+        .tag { font-family: var(--mono); font-size: .65em; letter-spacing: .06em; padding: 4px 11px; border-radius: 2px; border: 1px solid var(--border); background: var(--tag-bg); color: var(--muted); cursor: pointer; transition: all .2s; user-select: none; display: inline-flex; align-items: center; gap: 5px; }
+        .tag:hover { border-color: var(--accent); color: var(--accent); background: var(--tag-hover); }
+        .tag.active { border-color: var(--accent); color: var(--accent); background: rgba(79,195,247,.12); }
         .tag.tag-green { border-color: #1d3d30; color: var(--accent3); }
-        .tag.tag-green:hover, .tag.tag-green.active {
-            border-color: var(--accent3);
-            background: rgba(110,231,183,.1);
-            color: var(--accent3);
-        }
+        .tag.tag-green:hover, .tag.tag-green.active { border-color: var(--accent3); background: rgba(110,231,183,.1); color: var(--accent3); }
         .tag.tag-yellow { border-color: #3d3018; color: var(--accent2); }
-        .tag.tag-yellow:hover, .tag.tag-yellow.active {
-            border-color: var(--accent2);
-            background: rgba(247,201,72,.1);
-            color: var(--accent2);
-        }
+        .tag.tag-yellow:hover, .tag.tag-yellow.active { border-color: var(--accent2); background: rgba(247,201,72,.1); color: var(--accent2); }
+        
+        .cert-link { margin-left: 6px; font-size: 0.9em; color: var(--accent2); text-decoration: none; opacity: 0.4; transition: opacity 0.2s; }
+        .tag:hover .cert-link { opacity: 1; }
 
         /* ── FILTER BAR ── */
-        .filter-bar {
-            margin-bottom: 20px;
-            padding: 14px 18px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
-        }
-        .filter-label {
-            font-family: var(--mono);
-            font-size: .65em;
-            color: var(--muted);
-            letter-spacing: .1em;
-            margin-right: 4px;
-        }
-        .filter-clear {
-            font-family: var(--mono);
-            font-size: .62em;
-            color: var(--muted);
-            cursor: pointer;
-            padding: 3px 9px;
-            border: 1px solid var(--border);
-            border-radius: 2px;
-            background: transparent;
-            transition: all .2s;
-            margin-left: auto;
-        }
+        .filter-bar { margin-bottom: 20px; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+        .filter-label { font-family: var(--mono); font-size: .65em; color: var(--muted); letter-spacing: .1em; margin-right: 4px; }
+        .filter-clear { font-family: var(--mono); font-size: .62em; color: var(--muted); cursor: pointer; padding: 3px 9px; border: 1px solid var(--border); border-radius: 2px; background: transparent; transition: all .2s; margin-left: auto; }
         .filter-clear:hover { color: #fff; border-color: #fff; }
         .filter-clear.hidden { display: none; }
 
         /* ── PROJECTS ── */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
-        }
-
-        .project-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 22px 24px;
-            transition: border-color .25s, transform .2s;
-            animation: fadeUp .5s ease both;
-        }
-        .project-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
+        .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 22px 24px; transition: border-color .25s, transform .2s; animation: fadeUp .5s ease both; position: relative; }
+        .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
         .project-card.dimmed { opacity: .25; pointer-events: none; }
+        .proj-year { font-family: var(--mono); font-size: .65em; color: var(--accent); letter-spacing: .1em; margin-bottom: 6px; display: flex; justify-content: space-between;}
+        .proj-name { font-family: var(--display); font-weight: 700; font-size: 1em; color: #fff; margin-bottom: 8px; }
+        .proj-desc { font-size: .88em; color: #7a8fa8; line-height: 1.6; margin-bottom: 14px; }
+        .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px;}
+        
+        .btn-view-demo { font-family: var(--mono); font-size: 0.65em; color: var(--accent); background: transparent; border: 1px solid var(--border); padding: 5px 10px; border-radius: 3px; cursor: pointer; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 5px; }
+        .btn-view-demo:hover { background: rgba(79,195,247,.1); border-color: var(--accent); }
 
-        .proj-year {
-            font-family: var(--mono);
-            font-size: .65em;
-            color: var(--accent);
-            letter-spacing: .1em;
-            margin-bottom: 6px;
-        }
-        .proj-name {
-            font-family: var(--display);
-            font-weight: 700;
-            font-size: 1em;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-        .proj-desc {
-            font-size: .88em;
-            color: #7a8fa8;
-            line-height: 1.6;
-            margin-bottom: 14px;
-        }
-        .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        /* ── PROJECT MODAL ── */
+        .modal { display: none; position: fixed; z-index: 10000; inset: 0; background: rgba(13, 15, 18, 0.95); backdrop-filter: blur(8px); }
+        .modal-content { margin: auto; display: block; max-width: 85%; max-height: 75vh; margin-top: 5vh; border: 1px solid var(--border); border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); object-fit: contain; }
+        #modal-caption { text-align: center; color: #b0bec5; font-family: var(--mono); padding: 20px; font-size: 0.9em; max-width: 800px; margin: 0 auto; line-height: 1.6;}
+        .close-modal { position: absolute; top: 20px; right: 35px; color: var(--accent); font-size: 40px; cursor: pointer; transition: 0.2s; }
+        .close-modal:hover { color: #fff; }
 
         /* ── SKILLS SECTION ── */
-        .skills-columns {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .skill-group {}
-        .skill-group-name {
-            font-family: var(--mono);
-            font-size: .65em;
-            color: var(--accent);
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            padding-bottom: 6px;
-            border-bottom: 1px solid var(--border);
-        }
+        .skills-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .skill-group-name { font-family: var(--mono); font-size: .65em; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
         .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 
         /* ── CERTS ── */
         .cert-list { display: flex; flex-direction: column; gap: 10px; }
-        .cert-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 12px 16px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 3px;
-            transition: border-color .2s;
-        }
+        .cert-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 3px; transition: border-color .2s; }
         .cert-item:hover { border-color: var(--accent2); }
         .cert-name { font-family: var(--mono); font-size: .78em; color: #fff; }
         .cert-inst { font-size: .82em; color: var(--muted); margin-top: 2px; }
-        .cert-year {
-            font-family: var(--mono);
-            font-size: .68em;
-            color: var(--accent2);
-            letter-spacing: .06em;
-        }
+        .cert-year { font-family: var(--mono); font-size: .68em; color: var(--accent2); letter-spacing: .06em; }
 
         /* ── HIGHLIGHT ANIMATION ── */
-        @keyframes pulseHighlight {
-            0%   { box-shadow: 0 0 0 0 rgba(79,195,247,.5); }
-            70%  { box-shadow: 0 0 0 10px rgba(79,195,247,0); }
-            100% { box-shadow: 0 0 0 0 rgba(79,195,247,0); }
-        }
+        @keyframes pulseHighlight { 0% { box-shadow: 0 0 0 0 rgba(79,195,247,.5); } 70% { box-shadow: 0 0 0 10px rgba(79,195,247,0); } 100% { box-shadow: 0 0 0 0 rgba(79,195,247,0); } }
         .job.highlight-match { animation: pulseHighlight .7s ease; }
-
-        /* ── FILTER STATE ── */
         .job.dimmed { opacity: .2; transition: opacity .3s; }
-        .job.visible { opacity: 1; transition: opacity .3s; }
 
         /* ── FOOTER ── */
-        footer {
-            position: relative; z-index: 1;
-            border-top: 1px solid var(--border);
-            padding: 28px 40px;
-            display: flex; justify-content: space-between; align-items: center;
-            font-family: var(--mono);
-            font-size: .68em;
-            color: var(--muted);
-        }
+        footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: .68em; color: var(--muted); }
         footer a { color: var(--muted); text-decoration: none; transition: color .2s; }
         footer a:hover { color: var(--accent); }
         .footer-links { display: flex; gap: 20px; }
 
-        /* ── ANIMATIONS ── */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(12px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
         /* ── LANGUAGE TOGGLE ── */
         body.lang-en [data-lang="es"] { display: none !important; }
@@ -508,14 +216,14 @@
             .hero { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 20px; }
             .hero-name { font-size: 2em; }
             .hero-photo::after { display: none; }
-            .hero-contacts { justify-content: center; }
+            .hero-contacts, .hero-logos { justify-content: center; }
             .job { grid-template-columns: 1fr; }
             .job-meta { display: flex; gap: 14px; flex-wrap: wrap; align-items: baseline; }
             .projects-grid { grid-template-columns: 1fr; }
             .skills-columns { grid-template-columns: 1fr 1fr; }
             footer { flex-direction: column; gap: 12px; text-align: center; }
+            .modal-content { max-width: 95%; margin-top: 10vh; }
         }
-
         @media (max-width: 480px) {
             .wrapper { padding: 70px 16px 40px; }
             .skills-columns { grid-template-columns: 1fr; }
@@ -559,11 +267,19 @@
             <div class="hero-label">Mechanical Design Engineer</div>
             <h1 class="hero-name">Jorge Luis<br>Avilés Medina</h1>
             <div class="hero-title">Product Design &amp; Engineering Lead · CAD Automation · GD&amp;T Expert</div>
+            
             <div class="hero-contacts">
                 <span><i class="fas fa-map-marker-alt"></i> San Juan del Rio, Queretaro, MX</span>
                 <a href="mailto:jorge.aviles@gmx.com"><i class="fas fa-envelope"></i> jorge.aviles@gmx.com</a>
                 <a href="https://linkedin.com/in/jorge-aviles-mx" target="_blank"><i class="fab fa-linkedin"></i> jorge-aviles-mx</a>
                 <a href="https://github.com/javilesm" target="_blank"><i class="fab fa-github"></i> javilesm</a>
+            </div>
+
+            <div class="hero-logos">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" class="client-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Bombardier_Logo.svg" alt="Bombardier" class="client-logo" style="height: 18px;">
+                <span class="client-logo" style="font-family: var(--display); font-weight: bold; font-size: 1.2em; color: #fff;">VivaAerobus</span>
+                <span class="client-logo" style="font-family: var(--display); font-weight: bold; font-size: 1.2em; color: #fff;">Perficom</span>
             </div>
         </div>
     </header>
@@ -575,10 +291,10 @@
             <div class="section-line"></div>
         </div>
         <p class="summary-text" data-lang="en">
-            Mechanical Design Engineer with extensive experience in advanced mechanical design, CAD automation, reverse engineering, and product development. Expert in GD&T (ASME Y14.5 / ISO 1101), industrial metrology, and material selection. Proven ability to lead cross-functional teams, operate within safety-critical domains, and deliver precise technical documentation. Skilled in workflow automation via Python, iLogic, and VBA across the full product development lifecycle.
+            Manufacturing Engineer with a 12-year track record driving the complete tooling life cycle—from conceptual design to quality assurance and maintenance. Expanding my core expertise into the consumer products sector, particularly commercial refrigeration, I bring a rare convergence of disciplines. I fuse hands-on shop-floor mastery (machining and welding) with academic rigor and advanced software engineering. My objective is to bridge traditional manufacturing with Industry 4.0 by architecting bespoke CAD automation pipelines, deploying QC data analytics, and leveraging heavy cloud-based data processing.
         </p>
         <p class="summary-text" data-lang="es">
-            Ingeniero de diseño mecánico con amplia experiencia en diseño avanzado, automatización CAD, ingeniería inversa y desarrollo de producto. Experto en GD&T (ASME Y14.5 / ISO 1101), metrología industrial y selección de materiales. Liderazgo de equipos multidisciplinarios, trabajo en dominios de seguridad crítica y documentación técnica de alta precisión. Especialista en automatización de flujos mediante Python, iLogic y VBA.
+            Ingeniero de Manufactura con una trayectoria de 12 años impulsando el ciclo de vida completo de herramentales, desde el diseño conceptual hasta el aseguramiento de calidad y mantenimiento. Expandiendo mi experiencia hacia productos de consumo, específicamente refrigeración comercial, aporto una inusual convergencia de disciplinas. Fusiono la maestría práctica de taller (maquinado y soldadura) con el rigor académico y la ingeniería de software avanzada. Mi objetivo es conectar la manufactura tradicional con la Industria 4.0 mediante la arquitectura de flujos de automatización CAD, analítica de datos de calidad y procesamiento masivo en la nube.
         </p>
     </div>
 
@@ -595,144 +311,124 @@
         </div>
 
         <div id="jobs-container">
-
-        <div class="job" data-skills="Autodesk Inventor,iLogic,VB.NET,GD&T,Python,CAD Automation,Reverse Engineering,Metrology,CATIA V5,SolidWorks,Technical Documentation,Cost Estimation,Product Development">
-            <div class="job-meta">
-                <div class="job-dates">DEC 2025 — PRESENT</div>
-                <div class="job-company">Perficom</div>
-                <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>San Juan del Rio, Qro.</div>
+            <div class="job" data-skills="Autodesk Inventor,iLogic,VB.NET,GD&T,Python,CAD Automation,Reverse Engineering,Metrology,CATIA V5,SolidWorks,Technical Documentation,Cost Estimation,Product Development">
+                <div class="job-meta">
+                    <div class="job-dates">DEC 2025 — PRESENT</div>
+                    <div class="job-company">Perficom</div>
+                    <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>San Juan del Rio, Qro.</div>
+                </div>
+                <div class="job-body">
+                    <div class="job-role">Mechanical Design Engineer — Product Design &amp; Engineering Lead</div>
+                    <ul class="job-bullets" data-lang="en">
+                        <li>Led technical audits of CAD models and complex assemblies ensuring strict GD&T compliance across all product lines.</li>
+                        <li>Authored the corporate Technical Notes Manual — standardizing tolerances, part definition, and design specs company-wide.</li>
+                        <li>Designed components to critical manufacturing tolerances of ±0.025 mm (0.001 in) for industrial tooling applications.</li>
+                        <li>Automated parametric workflows using Autodesk Inventor API, iLogic, and VB.NET — reducing engineering cycle times significantly.</li>
+                        <li>Executed reverse engineering and industrial metrology projects for continuous improvement of existing product lines.</li>
+                    </ul>
+                    <ul class="job-bullets" data-lang="es">
+                        <li>Lideró auditorías técnicas de modelos CAD y ensambles complejos garantizando cumplimiento GD&T en todas las líneas de producto.</li>
+                        <li>Redactó el Manual de Notas Técnicas corporativo — estandarizando tolerancias y especificaciones de diseño en toda la empresa.</li>
+                        <li>Diseñó componentes con tolerancias críticas de ±0.025 mm (0.001 in) para aplicaciones de herramentales industriales.</li>
+                        <li>Automatizó flujos paramétricos con Inventor API, iLogic y VB.NET — reduciendo drásticamente los tiempos de ingeniería.</li>
+                        <li>Ejecutó proyectos de ingeniería inversa y metrología para mejora continua de líneas de producto existentes.</li>
+                    </ul>
+                    <div class="job-tags">
+                        <span class="tag" onclick="filterBySkill('Autodesk Inventor')">Autodesk Inventor</span>
+                        <span class="tag" onclick="filterBySkill('iLogic')">iLogic</span>
+                        <span class="tag" onclick="filterBySkill('VB.NET')">VB.NET</span>
+                        <span class="tag" onclick="filterBySkill('GD&T')">GD&T</span>
+                        <span class="tag" onclick="filterBySkill('Reverse Engineering')">Reverse Engineering</span>
+                        <span class="tag" onclick="filterBySkill('Metrology')">Metrology</span>
+                    </div>
+                </div>
             </div>
-            <div class="job-body">
-                <div class="job-role">Mechanical Design Engineer — Product Design &amp; Engineering Lead</div>
-                <ul class="job-bullets" data-lang="en">
-                    <li>Led technical audits of CAD models and complex assemblies ensuring strict GD&T compliance across all product lines.</li>
-                    <li>Authored the corporate Technical Notes Manual — standardizing tolerances, part definition, and design specs company-wide.</li>
-                    <li>Designed components to critical manufacturing tolerances of ±0.025 mm (0.001 in) for industrial tooling applications.</li>
-                    <li>Automated parametric workflows using Autodesk Inventor API, iLogic, and VB.NET — reducing engineering cycle times significantly.</li>
-                    <li>Executed reverse engineering and industrial metrology projects for continuous improvement of existing product lines.</li>
-                    <li>Provided sales support with technical documentation, cost estimation, and product presentations for clients.</li>
-                </ul>
-                <ul class="job-bullets" data-lang="es">
-                    <li>Lideró auditorías técnicas de modelos CAD y ensambles complejos garantizando cumplimiento GD&T en todas las líneas de producto.</li>
-                    <li>Redactó el Manual de Notas Técnicas corporativo — estandarizando tolerancias y especificaciones de diseño en toda la empresa.</li>
-                    <li>Diseñó componentes con tolerancias críticas de ±0.025 mm (0.001 in) para aplicaciones de herramentales industriales.</li>
-                    <li>Automatizó flujos paramétricos con Inventor API, iLogic y VB.NET — reduciendo drásticamente los tiempos de ingeniería.</li>
-                    <li>Ejecutó proyectos de ingeniería inversa y metrología para mejora continua de líneas de producto existentes.</li>
-                    <li>Brindó soporte a ventas con documentación técnica, estimaciones de costos y presentaciones de producto.</li>
-                </ul>
-                <div class="job-tags">
-                    <span class="tag" onclick="filterBySkill('Autodesk Inventor')">Autodesk Inventor</span>
-                    <span class="tag" onclick="filterBySkill('iLogic')">iLogic</span>
-                    <span class="tag" onclick="filterBySkill('VB.NET')">VB.NET</span>
-                    <span class="tag" onclick="filterBySkill('GD&T')">GD&T</span>
-                    <span class="tag" onclick="filterBySkill('Reverse Engineering')">Reverse Engineering</span>
-                    <span class="tag" onclick="filterBySkill('Metrology')">Metrology</span>
-                    <span class="tag" onclick="filterBySkill('Technical Documentation')">Technical Documentation</span>
-                    <span class="tag tag-yellow" onclick="filterBySkill('Cost Estimation')">Cost Estimation</span>
+
+            <div class="job" data-skills="Logistics,Material Handling,Safety,Throughput Analysis">
+                <div class="job-meta">
+                    <div class="job-dates">MAY — NOV 2025</div>
+                    <div class="job-company">Amazon</div>
+                    <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>Queretaro, Qro.</div>
+                </div>
+                <div class="job-body">
+                    <div class="job-role">Sort Center Associate FX</div>
+                    <ul class="job-bullets" data-lang="en">
+                        <li>Maintained throughput and efficiency metrics in high-volume logistics sorting and palletizing operations.</li>
+                        <li>Coordinated material handling and conveyor workflow improvements within strict corporate safety standards.</li>
+                    </ul>
+                    <ul class="job-bullets" data-lang="es">
+                        <li>Mantuvo métricas de eficiencia y throughput en operaciones de clasificación y paletizado de alto volumen.</li>
+                        <li>Coordinó mejoras de flujo en manejo de materiales bajo estrictos lineamientos de seguridad corporativa.</li>
+                    </ul>
+                    <div class="job-tags">
+                        <span class="tag" onclick="filterBySkill('Material Handling')">Material Handling</span>
+                        <span class="tag" onclick="filterBySkill('Throughput Analysis')">Throughput Analysis</span>
+                        <span class="tag" onclick="filterBySkill('Safety')">Safety</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="job" data-skills="Calibration Programs,TPM,Team Leadership,Budget Management,AMOS,AMM,IPC,TEM,MPD,Airbus World,Cost Estimation,Production Planning,Preventive Maintenance,Safety">
+                <div class="job-meta">
+                    <div class="job-dates">APR — OCT 2021</div>
+                    <div class="job-company">VivaAerobus</div>
+                    <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>Monterrey, N.L.</div>
+                </div>
+                <div class="job-body">
+                    <div class="job-role">Tooling Control Engineer</div>
+                    <ul class="job-bullets" data-lang="en">
+                        <li>Designed and executed the tooling calibration program, managing TAT dispatch to workshops and ensuring airworthiness compliance.</li>
+                        <li>Guaranteed tooling availability for line maintenance and major service execution, controlling work orders.</li>
+                        <li>Administered department budget and coordinated procurement of supplies, equipment, repairs, and capital assets.</li>
+                        <li>Applied AMM, IPC, TEM, MPD technical manuals and the AMOS / Airbus World system to plan and control tooling compliance.</li>
+                    </ul>
+                    <ul class="job-bullets" data-lang="es">
+                        <li>Diseñó y ejecutó el programa de calibración de herramientas, gestionando TAT y asegurando cumplimiento de aeronavegabilidad.</li>
+                        <li>Garantizó disponibilidad de herramientas para mantenimiento de línea y servicio mayor, emitiendo reportes de vencimiento.</li>
+                        <li>Administró el presupuesto del departamento y coordinó compras de suministros, equipos y activos de capital.</li>
+                        <li>Aplicó manuales AMM, IPC, TEM, MPD y el sistema AMOS / Airbus World para la planeación y control de herramientas.</li>
+                    </ul>
+                    <div class="job-tags">
+                        <span class="tag tag-green" onclick="filterBySkill('AMOS')">AMOS</span>
+                        <span class="tag tag-green" onclick="filterBySkill('AMM')">AMM / IPC / TEM / MPD</span>
+                        <span class="tag" onclick="filterBySkill('Calibration Programs')">Calibration Programs</span>
+                        <span class="tag" onclick="filterBySkill('TPM')">TPM</span>
+                        <span class="tag tag-yellow" onclick="filterBySkill('Budget Management')">Budget Management</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="job" data-skills="CATIA V5,GD&T,CAD Modeling,Technical Documentation,Lean Manufacturing,Six Sigma,ISO 9001,AS9100,Cost Estimation,Team Leadership,Product Development,Safety">
+                <div class="job-meta">
+                    <div class="job-dates">NOV 2015 — JUN 2020</div>
+                    <div class="job-company">Bombardier<br>Aerospace</div>
+                    <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>Queretaro, Qro.</div>
+                </div>
+                <div class="job-body">
+                    <div class="job-role">Tooling Engineer — Agente de Herramientas (QUE03006)</div>
+                    <ul class="job-bullets" data-lang="en">
+                        <li>Created detailed CATIA V5 CAD models and GD&T-compliant drawings for aerospace tooling components and assemblies.</li>
+                        <li>Executed preventive maintenance plans and tool re-certification schedules on time and per regulatory requirements.</li>
+                        <li>Developed tooling verification and control policies per QAD 3.8.7.21, tracking KPIs via departmental scorecard.</li>
+                        <li>Performed tooling cost estimations and drove cost-reduction via design standardization and process simplification.</li>
+                    </ul>
+                    <ul class="job-bullets" data-lang="es">
+                        <li>Creó modelos CAD detallados en CATIA V5 y planos con GD&T para componentes y ensambles aeroespaciales.</li>
+                        <li>Ejecutó planes de mantenimiento preventivo y recertificaciones de herramientas dentro de los plazos reglamentarios.</li>
+                        <li>Desarrolló políticas de verificación y control conforme a QAD 3.8.7.21, con seguimiento de KPIs en scorecard.</li>
+                        <li>Realizó estimaciones de costos de herramientas e impulsó reducción de costos vía estandarización de diseños.</li>
+                    </ul>
+                    <div class="job-tags">
+                        <span class="tag tag-green" onclick="filterBySkill('CATIA V5')">CATIA V5</span>
+                        <span class="tag" onclick="filterBySkill('GD&T')">GD&T</span>
+                        <span class="tag" onclick="filterBySkill('Lean Manufacturing')">Lean Manufacturing</span>
+                        <span class="tag tag-green" onclick="filterBySkill('AS9100')">AS9100</span>
+                        <span class="tag" onclick="filterBySkill('Cost Estimation')">Cost Estimation</span>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="job" data-skills="Logistics,Material Handling,Safety,Throughput Analysis">
-            <div class="job-meta">
-                <div class="job-dates">MAY — NOV 2025</div>
-                <div class="job-company">Amazon</div>
-                <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>Queretaro, Qro.</div>
-            </div>
-            <div class="job-body">
-                <div class="job-role">Sort Center Associate FX</div>
-                <ul class="job-bullets" data-lang="en">
-                    <li>Maintained throughput and efficiency metrics in high-volume logistics sorting and palletizing operations.</li>
-                    <li>Coordinated material handling and conveyor workflow improvements within strict corporate safety standards.</li>
-                </ul>
-                <ul class="job-bullets" data-lang="es">
-                    <li>Mantuvo métricas de eficiencia y throughput en operaciones de clasificación y paletizado de alto volumen.</li>
-                    <li>Coordinó mejoras de flujo en manejo de materiales bajo estrictos lineamientos de seguridad corporativa.</li>
-                </ul>
-                <div class="job-tags">
-                    <span class="tag" onclick="filterBySkill('Material Handling')">Material Handling</span>
-                    <span class="tag" onclick="filterBySkill('Throughput Analysis')">Throughput Analysis</span>
-                    <span class="tag" onclick="filterBySkill('Safety')">Safety</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="job" data-skills="Calibration Programs,TPM,Team Leadership,Budget Management,AMOS,AMM,IPC,TEM,MPD,Airbus World,Cost Estimation,Production Planning,Preventive Maintenance,Safety">
-            <div class="job-meta">
-                <div class="job-dates">APR — OCT 2021</div>
-                <div class="job-company">VivaAerobus</div>
-                <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>Monterrey, N.L.</div>
-            </div>
-            <div class="job-body">
-                <div class="job-role">Tooling Control Engineer</div>
-                <ul class="job-bullets" data-lang="en">
-                    <li>Designed and executed the tooling calibration program, managing TAT dispatch to workshops and ensuring airworthiness compliance with manufacturer and Engineering department requirements.</li>
-                    <li>Guaranteed tooling availability for line maintenance and major service execution, controlling work orders and issuing monthly tooling expiration reports.</li>
-                    <li>Administered department budget and coordinated procurement of supplies, equipment, repairs, and capital assets.</li>
-                    <li>Supervised junior technicians and engineers in preventive/corrective maintenance and calibration operations.</li>
-                    <li>Applied AMM, IPC, TEM, MPD technical manuals and the AMOS / Airbus World system to plan and control tooling compliance across all production units.</li>
-                    <li>Correlated OEE data and TPM KPIs, presenting structured performance reports to senior management.</li>
-                </ul>
-                <ul class="job-bullets" data-lang="es">
-                    <li>Diseñó y ejecutó el programa de calibración de herramientas, gestionando TAT y asegurando cumplimiento de aeronavegabilidad.</li>
-                    <li>Garantizó disponibilidad de herramientas para mantenimiento de línea y servicio mayor, emitiendo reportes mensuales de vencimiento.</li>
-                    <li>Administró el presupuesto del departamento y coordinó compras de suministros, equipos y activos de capital.</li>
-                    <li>Supervisó técnicos e ingenieros junior en mantenimiento preventivo/correctivo y operaciones de calibración.</li>
-                    <li>Aplicó manuales AMM, IPC, TEM, MPD y el sistema AMOS / Airbus World para la planeación y control de herramientas.</li>
-                    <li>Correlacionó datos OEE y KPIs de TPM, presentando reportes de desempeño a la alta dirección.</li>
-                </ul>
-                <div class="job-tags">
-                    <span class="tag tag-green" onclick="filterBySkill('AMOS')">AMOS</span>
-                    <span class="tag tag-green" onclick="filterBySkill('AMM')">AMM / IPC / TEM / MPD</span>
-                    <span class="tag tag-green" onclick="filterBySkill('Airbus World')">Airbus World</span>
-                    <span class="tag" onclick="filterBySkill('Calibration Programs')">Calibration Programs</span>
-                    <span class="tag" onclick="filterBySkill('TPM')">TPM</span>
-                    <span class="tag" onclick="filterBySkill('Team Leadership')">Team Leadership</span>
-                    <span class="tag tag-yellow" onclick="filterBySkill('Budget Management')">Budget Management</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="job" data-skills="CATIA V5,GD&T,CAD Modeling,Technical Documentation,Lean Manufacturing,Six Sigma,ISO 9001,AS9100,Cost Estimation,Team Leadership,Product Development,Safety">
-            <div class="job-meta">
-                <div class="job-dates">NOV 2015 — JUN 2020</div>
-                <div class="job-company">Bombardier<br>Aerospace</div>
-                <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>Queretaro, Qro.</div>
-            </div>
-            <div class="job-body">
-                <div class="job-role">Tooling Engineer — Agente de Herramientas (QUE03006)</div>
-                <ul class="job-bullets" data-lang="en">
-                    <li>Maintained tooling asset condition and managed TSR (Tooling Service Request) prioritization aligned with production needs.</li>
-                    <li>Created detailed CATIA V5 CAD models and GD&T-compliant drawings for aerospace tooling components and assemblies.</li>
-                    <li>Executed preventive maintenance plans and tool re-certification schedules on time and per regulatory requirements.</li>
-                    <li>Developed tooling verification and control policies per QAD 3.8.7.21, tracking KPIs via departmental scorecard.</li>
-                    <li>Contributed to continuous improvement of production processes — root cause analysis and cross-team problem solving.</li>
-                    <li>Performed tooling cost estimations and drove cost-reduction via design standardization and process simplification.</li>
-                    <li>Trained junior engineers in CATIA V5, GD&T, and aerospace tooling best practices.</li>
-                </ul>
-                <ul class="job-bullets" data-lang="es">
-                    <li>Mantuvo el buen estado de herramentales y gestionó priorización de TSRs alineados con necesidades de producción.</li>
-                    <li>Creó modelos CAD detallados en CATIA V5 y planos con GD&T para componentes y ensambles aeroespaciales.</li>
-                    <li>Ejecutó planes de mantenimiento preventivo y recertificaciones de herramientas dentro de los plazos reglamentarios.</li>
-                    <li>Desarrolló políticas de verificación y control conforme a QAD 3.8.7.21, con seguimiento de KPIs en scorecard.</li>
-                    <li>Contribuyó a la mejora continua de procesos productivos mediante análisis de causa raíz y soporte multidisciplinario.</li>
-                    <li>Realizó estimaciones de costos de herramientas e impulsó reducción de costos vía estandarización de diseños.</li>
-                    <li>Capacitó ingenieros junior en CATIA V5, GD&T y mejores prácticas de herramentales aeroespaciales.</li>
-                </ul>
-                <div class="job-tags">
-                    <span class="tag tag-green" onclick="filterBySkill('CATIA V5')">CATIA V5</span>
-                    <span class="tag" onclick="filterBySkill('GD&T')">GD&T</span>
-                    <span class="tag" onclick="filterBySkill('CAD Modeling')">CAD Modeling</span>
-                    <span class="tag" onclick="filterBySkill('Lean Manufacturing')">Lean Manufacturing</span>
-                    <span class="tag" onclick="filterBySkill('Six Sigma')">Six Sigma</span>
-                    <span class="tag tag-green" onclick="filterBySkill('AS9100')">AS9100</span>
-                    <span class="tag" onclick="filterBySkill('Cost Estimation')">Cost Estimation</span>
-                    <span class="tag" onclick="filterBySkill('Team Leadership')">Team Leadership</span>
-                </div>
-            </div>
-        </div>
-
-        </div></div>
+    </div>
 
     <div class="section-wrap" id="projects">
         <div class="section-head">
@@ -744,57 +440,37 @@
         <div class="projects-grid" id="projects-grid">
 
             <div class="project-card" data-proj-skills="Python,FastAPI,GCP,3D Modeling,CAD Automation,Product Development">
-                <div class="proj-year">2026</div>
-                <div class="proj-name">PointForge3D</div>
-                <p class="proj-desc" data-lang="en">Python / FastAPI pipeline on GCP G2 instances for automated conversion of 2D engineering references to 3D point clouds and surface generation. Applies mechanical engineering and product development principles at scale.</p>
-                <p class="proj-desc" data-lang="es">Pipeline en Python / FastAPI sobre instancias G2 de GCP para conversión automatizada de referencias 2D a nubes de puntos 3D y generación de superficies. Aplica principios de ingeniería mecánica y desarrollo de producto a escala.</p>
-                <div class="proj-tags">
-                    <span class="tag tag-green" onclick="filterBySkill('Python')">Python</span>
-                    <span class="tag tag-green" onclick="filterBySkill('FastAPI')">FastAPI</span>
-                    <span class="tag tag-green" onclick="filterBySkill('GCP')">GCP</span>
-                    <span class="tag" onclick="filterBySkill('3D Modeling')">3D Modeling</span>
-                    <span class="tag" onclick="filterBySkill('CAD Automation')">CAD Automation</span>
+                <div class="proj-year">
+                    <span>2026</span>
+                    <span class="tag tag-green" style="font-size: 0.9em; border: none; padding: 2px 5px;"><i class="fas fa-cloud"></i> Cloud</span>
                 </div>
+                <div class="proj-name">PointForge3D</div>
+                <p class="proj-desc" data-lang="en">Python / FastAPI pipeline on GCP G2 instances for automated conversion of 2D engineering references to 3D point clouds and surface generation.</p>
+                <p class="proj-desc" data-lang="es">Pipeline en Python / FastAPI sobre instancias G2 de GCP para conversión automatizada de referencias 2D a nubes de puntos 3D y generación de superficies.</p>
+                <div class="proj-tags">
+                    <span class="tag" onclick="event.stopPropagation(); filterBySkill('Python')">Python</span>
+                    <span class="tag" onclick="event.stopPropagation(); filterBySkill('FastAPI')">FastAPI</span>
+                    <span class="tag" onclick="event.stopPropagation(); filterBySkill('GCP')">GCP</span>
+                </div>
+                <button class="btn-view-demo" onclick="openModal('https://placehold.co/800x450/141720/4fc3f7?text=PointForge3D+Render', '<strong>PointForge3D:</strong> Automated Point Cloud Generation Pipeline running on GCP.')">
+                    <i class="fas fa-image"></i> <span data-lang="en">View Concept</span><span data-lang="es">Ver Concepto</span>
+                </button>
             </div>
 
             <div class="project-card" data-proj-skills="iLogic,Autodesk Inventor,VB.NET,CAD Automation,PowerShell,Product Development">
                 <div class="proj-year">2026</div>
                 <div class="proj-name">Procedural CAD Generation</div>
-                <p class="proj-desc" data-lang="en">PowerShell + iLogic algorithms for parametric import, dynamic positioning, and metadata management of part blocks (.ipt) in bulk assemblies within Autodesk Inventor. Enables system layout drawing automation at scale.</p>
-                <p class="proj-desc" data-lang="es">Algoritmos en PowerShell + iLogic para importación paramétrica, posicionamiento dinámico y gestión de metadatos de bloques (.ipt) en ensambles masivos en Autodesk Inventor. Automatiza la generación de layouts a escala.</p>
+                <p class="proj-desc" data-lang="en">PowerShell + iLogic algorithms for parametric import, dynamic positioning, and metadata management of part blocks (.ipt) in bulk assemblies.</p>
+                <p class="proj-desc" data-lang="es">Algoritmos en PowerShell + iLogic para importación paramétrica, posicionamiento dinámico y gestión de metadatos de bloques (.ipt) en ensambles masivos.</p>
                 <div class="proj-tags">
-                    <span class="tag" onclick="filterBySkill('iLogic')">iLogic</span>
-                    <span class="tag" onclick="filterBySkill('Autodesk Inventor')">Autodesk Inventor</span>
-                    <span class="tag" onclick="filterBySkill('VB.NET')">VB.NET</span>
-                    <span class="tag" onclick="filterBySkill('CAD Automation')">CAD Automation</span>
+                    <span class="tag" onclick="event.stopPropagation(); filterBySkill('iLogic')">iLogic</span>
+                    <span class="tag" onclick="event.stopPropagation(); filterBySkill('Autodesk Inventor')">Inventor API</span>
+                    <span class="tag" onclick="event.stopPropagation(); filterBySkill('CAD Automation')">CAD Automation</span>
                 </div>
+                <button class="btn-view-demo" onclick="openModal('https://placehold.co/800x450/141720/f7c948?text=Procedural+CAD+Assembly', '<strong>Procedural CAD:</strong> Algoritmo iLogic ejecutando ensambles masivos con tolerancias de manufactura integradas.')">
+                    <i class="fas fa-project-diagram"></i> <span data-lang="en">View Logic</span><span data-lang="es">Ver Lógica</span>
+                </button>
             </div>
-
-            <div class="project-card" data-proj-skills="GD&T,Metrology,Technical Documentation,Product Development">
-                <div class="proj-year">2025</div>
-                <div class="proj-name">Corporate Technical Notes Manual</div>
-                <p class="proj-desc" data-lang="en">Authored and implemented the company-wide engineering standard for tolerances, GD&T callouts, part definitions, and design specifications — harmonizing engineering documentation across all product lines at Perficom.</p>
-                <p class="proj-desc" data-lang="es">Redacción e implementación del estándar corporativo de ingeniería para tolerancias, notas GD&T, definición de piezas y especificaciones de diseño en todas las líneas de producto de Perficom.</p>
-                <div class="proj-tags">
-                    <span class="tag" onclick="filterBySkill('GD&T')">GD&T</span>
-                    <span class="tag" onclick="filterBySkill('Technical Documentation')">Technical Documentation</span>
-                    <span class="tag" onclick="filterBySkill('Metrology')">Metrology</span>
-                </div>
-            </div>
-
-            <div class="project-card" data-proj-skills="CATIA V5,GD&T,Reverse Engineering,Lean Manufacturing,AS9100">
-                <div class="proj-year">2015–2020</div>
-                <div class="proj-name">Aerospace Tooling Program</div>
-                <p class="proj-desc" data-lang="en">Full lifecycle tooling engineering for Bombardier's Queretaro facility — from CATIA V5 CAD design and GD&T documentation to preventive maintenance plans, TSR management, re-certification, and cost reduction initiatives.</p>
-                <p class="proj-desc" data-lang="es">Ingeniería de herramentales ciclo completo para la planta de Bombardier en Querétaro — desde diseño CAD en CATIA V5 y documentación GD&T hasta planes de mantenimiento preventivo, gestión de TSRs, recertificación y reducción de costos.</p>
-                <div class="proj-tags">
-                    <span class="tag tag-green" onclick="filterBySkill('CATIA V5')">CATIA V5</span>
-                    <span class="tag" onclick="filterBySkill('GD&T')">GD&T</span>
-                    <span class="tag" onclick="filterBySkill('Reverse Engineering')">Reverse Engineering</span>
-                    <span class="tag tag-green" onclick="filterBySkill('AS9100')">AS9100</span>
-                </div>
-            </div>
-
         </div>
     </div>
 
@@ -807,80 +483,42 @@
 
         <div class="skills-columns">
             <div class="skill-group">
-                <div class="skill-group-name">CAD / Mechanical Design</div>
+                <div class="skill-group-name"><i class="fas fa-drafting-compass"></i> CAD / Mechanical Design</div>
                 <div class="skill-tags">
                     <span class="tag" onclick="filterBySkill('Autodesk Inventor')">Autodesk Inventor</span>
                     <span class="tag" onclick="filterBySkill('CATIA V5')">CATIA V5</span>
                     <span class="tag" onclick="filterBySkill('SolidWorks')">SolidWorks</span>
-                    <span class="tag" onclick="filterBySkill('CAD Modeling')">AutoCAD 2D/3D</span>
-                    <span class="tag" onclick="filterBySkill('3D Modeling')">3D Modeling</span>
-                    <span class="tag" onclick="filterBySkill('GD&T')">GD&T ASME Y14.5</span>
-                    <span class="tag" onclick="filterBySkill('GD&T')">ISO 1101</span>
-                    <span class="tag" onclick="filterBySkill('Metrology')">Metrology</span>
+                    <span class="tag" onclick="filterBySkill('GD&T')">
+                        GD&T ASME Y14.5
+                        <a href="#" target="_blank" title="View GD&T Certificate" class="cert-link" onclick="event.stopPropagation();"><i class="fas fa-certificate"></i></a>
+                    </span>
                     <span class="tag" onclick="filterBySkill('Reverse Engineering')">Reverse Engineering</span>
-                    <span class="tag" onclick="filterBySkill('Product Development')">FEA</span>
                 </div>
             </div>
 
             <div class="skill-group">
-                <div class="skill-group-name">Coding &amp; Cloud</div>
+                <div class="skill-group-name"><i class="fas fa-laptop-code"></i> Coding &amp; Cloud</div>
                 <div class="skill-tags">
                     <span class="tag tag-green" onclick="filterBySkill('Python')">Python</span>
                     <span class="tag tag-green" onclick="filterBySkill('FastAPI')">FastAPI</span>
                     <span class="tag tag-green" onclick="filterBySkill('GCP')">GCP</span>
                     <span class="tag tag-green" onclick="filterBySkill('iLogic')">iLogic</span>
                     <span class="tag tag-green" onclick="filterBySkill('VB.NET')">VB.NET</span>
-                    <span class="tag tag-green" onclick="filterBySkill('CAD Automation')">CAD Automation</span>
-                    <span class="tag tag-green" onclick="filterBySkill('CAD Automation')">VBA / Macros</span>
                     <span class="tag tag-green" onclick="filterBySkill('CAD Automation')">PowerShell</span>
                 </div>
             </div>
 
             <div class="skill-group">
-                <div class="skill-group-name">Quality &amp; Systems</div>
+                <div class="skill-group-name"><i class="fas fa-clipboard-check"></i> Quality &amp; Systems</div>
                 <div class="skill-tags">
-                    <span class="tag tag-yellow" onclick="filterBySkill('AS9100')">AS9100</span>
+                    <span class="tag tag-yellow" onclick="filterBySkill('AS9100')">
+                        AS9100
+                        <a href="#" target="_blank" title="View Standard Knowledge" class="cert-link" onclick="event.stopPropagation();"><i class="fas fa-certificate"></i></a>
+                    </span>
                     <span class="tag tag-yellow" onclick="filterBySkill('ISO 9001')">ISO 9001</span>
                     <span class="tag tag-yellow" onclick="filterBySkill('Lean Manufacturing')">Lean Manufacturing</span>
                     <span class="tag tag-yellow" onclick="filterBySkill('Six Sigma')">Six Sigma</span>
                     <span class="tag tag-yellow" onclick="filterBySkill('TPM')">TPM</span>
-                    <span class="tag tag-yellow" onclick="filterBySkill('Cost Estimation')">Cost Estimation</span>
-                    <span class="tag tag-yellow" onclick="filterBySkill('Technical Documentation')">Technical Docs</span>
-                    <span class="tag tag-yellow" onclick="filterBySkill('Budget Management')">SAP</span>
-                </div>
-            </div>
-
-            <div class="skill-group">
-                <div class="skill-group-name">Aerospace MRO</div>
-                <div class="skill-tags">
-                    <span class="tag tag-green" onclick="filterBySkill('AMOS')">AMOS</span>
-                    <span class="tag tag-green" onclick="filterBySkill('Airbus World')">Airbus World</span>
-                    <span class="tag tag-green" onclick="filterBySkill('AMM')">AMM / IPC / TEM / MPD</span>
-                    <span class="tag" onclick="filterBySkill('Calibration Programs')">Calibration Programs</span>
-                    <span class="tag" onclick="filterBySkill('Preventive Maintenance')">Preventive Maintenance</span>
-                    <span class="tag" onclick="filterBySkill('Safety')">Safety Critical</span>
-                </div>
-            </div>
-
-            <div class="skill-group">
-                <div class="skill-group-name">Manufacturing</div>
-                <div class="skill-tags">
-                    <span class="tag" onclick="filterBySkill('Material Handling')">Material Handling</span>
-                    <span class="tag" onclick="filterBySkill('Throughput Analysis')">Throughput Analysis</span>
-                    <span class="tag" onclick="filterBySkill('Product Development')">Product Development</span>
-                    <span class="tag" onclick="filterBySkill('Product Development')">Sheet Metal Design</span>
-                    <span class="tag" onclick="filterBySkill('Product Development')">Machining</span>
-                </div>
-            </div>
-
-            <div class="skill-group">
-                <div class="skill-group-name">Leadership &amp; Soft Skills</div>
-                <div class="skill-tags">
-                    <span class="tag" onclick="filterBySkill('Team Leadership')">Team Leadership</span>
-                    <span class="tag" onclick="filterBySkill('Team Leadership')">Cross-functional Collab</span>
-                    <span class="tag" onclick="filterBySkill('Budget Management')">Budget Management</span>
-                    <span class="tag" onclick="filterBySkill('Technical Documentation')">Presentation Skills</span>
-                    <span class="tag" onclick="filterBySkill('Team Leadership')">Mentoring</span>
                 </div>
             </div>
         </div>
@@ -910,13 +548,6 @@
             </div>
             <div class="cert-item">
                 <div>
-                    <div class="cert-name">Project Management</div>
-                    <div class="cert-inst">SPC Group</div>
-                </div>
-                <div class="cert-year">2020</div>
-            </div>
-            <div class="cert-item">
-                <div>
                     <div class="cert-name">GD&T — 4 Levels</div>
                     <div class="cert-inst">Qualixoma</div>
                 </div>
@@ -925,7 +556,13 @@
         </div>
     </div>
 
-</div><footer>
+</div><div id="project-modal" class="modal">
+    <span class="close-modal">&times;</span>
+    <img id="modal-img" class="modal-content" src="" alt="Project Preview">
+    <div id="modal-caption"></div>
+</div>
+
+<footer>
     <span>&copy; 2026 Jorge Luis Avilés Medina</span>
     <div class="footer-links">
         <a href="https://linkedin.com/in/jorge-aviles-mx" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
@@ -949,13 +586,11 @@
         if (activeSkill === skill) { clearFilter(); return; }
         activeSkill = skill;
 
-        // Highlight all tags matching this skill
         document.querySelectorAll('.tag').forEach(t => {
             t.classList.toggle('active', t.textContent.trim().includes(skill) ||
                 (t.onclick && t.onclick.toString().includes(skill)));
         });
 
-        // Filter jobs
         document.querySelectorAll('.job').forEach(job => {
             const skills = (job.dataset.skills || '').split(',').map(s => s.trim());
             const match = skills.some(s => s.toLowerCase().includes(skill.toLowerCase()) ||
@@ -967,7 +602,6 @@
             }
         });
 
-        // Filter project cards
         document.querySelectorAll('.project-card').forEach(card => {
             const skills = (card.dataset.projSkills || '').split(',').map(s => s.trim());
             const match = skills.some(s => s.toLowerCase().includes(skill.toLowerCase()) ||
@@ -975,10 +609,8 @@
             card.classList.toggle('dimmed', !match);
         });
 
-        // Scroll to experience
         document.getElementById('experience').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-        // Update filter bar label
         const bar = document.getElementById('exp-filter-bar');
         let pill = document.getElementById('active-filter-pill');
         if (!pill) {
@@ -1000,6 +632,34 @@
         if (pill) pill.remove();
         document.getElementById('filter-clear-btn').classList.add('hidden');
     }
+
+    // ── MODAL LOGIC ──
+    const modal = document.getElementById("project-modal");
+    
+    function openModal(imgSrc, caption) {
+        document.getElementById("modal-img").src = imgSrc;
+        document.getElementById("modal-caption").innerHTML = caption;
+        modal.style.display = "block";
+    }
+
+    // Cerrar con el botón X
+    document.querySelector(".close-modal").onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Cerrar dando clic fuera de la imagen
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Cerrar presionando la tecla ESC
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape" && modal.style.display === "block") {
+            modal.style.display = "none";
+        }
+    });
 
     // ── SCROLL REVEAL ──
     const observer = new IntersectionObserver((entries) => {
