@@ -1,3 +1,11 @@
-- **Current:** Product Design & Engineering Lead at **Perficom**.
-- **Past:** Tooling Control Engineer at **VivaAerobus** | Tooling Engineer at **Bombardier Aerospace**.
-- **Education:** B.S. in Manufacturing Engineering - **Universidad Tecnológica de San Juan del Río**.
+<div class="job">
+    <div class="job-title">
+        <span>Product Design & Engineering Lead | Perficom</span>
+        <span>Dec 2025 – Present</span>
+    </div>
+    <ul>
+        <li>Led technical auditing of CAD models and complex assemblies.</li>
+        <li>Optimized components with critical tolerances up to 0.025 mm (0.001 in).</li>
+        <li>Automated workflows using Autodesk Inventor API, iLogic, and VB.NET.</li>
+    </ul>
+</div>
