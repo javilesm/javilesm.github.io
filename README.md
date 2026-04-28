@@ -44,5 +44,5 @@ Procedural terrain and geometry generator built within Autodesk Inventor.
 
 ---
 
-### ⚙️ "Always provide dimensions in mm and inches."
+### ⚙️ "Precision engineering. Sturdy design. Functional aesthetics."
 *Standardized precision is the foundation of quality engineering.*
