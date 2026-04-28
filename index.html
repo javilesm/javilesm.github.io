@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jorge Luis Avilés Medina | Product Design & Engineering Lead</title>
+    <title>Jorge Luis Avilés Medina | Product Design & Engineering</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -12,65 +12,141 @@
             --accent: #3498db;
             --text: #333;
             --light: #ecf0f1;
+            --nav-bg: #1a252f;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; background: #f4f7f6; }
-        .container { max-width: 900px; margin: 20px auto; background: white; padding: 40px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        header { border-bottom: 2px solid var(--primary); padding-bottom: 20px; margin-bottom: 30px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; background: #f4f7f6; padding-top: 60px; }
+        
+        /* Sticky Navigation */
+        .top-nav { position: fixed; top: 0; left: 0; width: 100%; background: var(--nav-bg); color: white; display: flex; justify-content: space-between; align-items: center; padding: 10px 40px; box-sizing: border-box; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .nav-links a { color: white; text-decoration: none; margin-right: 20px; font-size: 0.9em; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-actions { display: flex; gap: 15px; align-items: center; }
+        .btn-lang { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 5px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-lang:hover { background: var(--accent); color: white; }
+        .btn-download { background: var(--accent); color: white; padding: 5px 15px; text-decoration: none; border-radius: 4px; font-size: 0.9em; font-weight: bold; transition: background 0.3s; }
+        .btn-download:hover { background: #2980b9; }
+
+        /* Main Container */
+        .container { max-width: 900px; margin: 20px auto; background: white; padding: 40px; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
+        
+        /* Profile Header with Photo */
+        .profile-header { display: flex; align-items: center; gap: 30px; border-bottom: 2px solid var(--primary); padding-bottom: 20px; margin-bottom: 30px; }
+        .profile-photo { flex-shrink: 0; }
+        .profile-photo img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid var(--light); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .profile-info { flex-grow: 1; }
+        
         h1 { margin: 0; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
-        .subtitle { font-size: 1.2em; color: var(--accent); font-weight: bold; }
-        .contact-info { margin-top: 10px; font-size: 0.9em; display: flex; gap: 15px; flex-wrap: wrap; }
+        .subtitle { font-size: 1.2em; color: var(--accent); font-weight: bold; margin-bottom: 10px; }
+        .contact-info { font-size: 0.9em; display: flex; gap: 15px; flex-wrap: wrap; color: var(--secondary); }
+        .contact-info i { color: var(--accent); }
+        
+        /* Sections */
         section { margin-bottom: 30px; }
         h2 { border-left: 5px solid var(--accent); padding-left: 15px; color: var(--primary); text-transform: uppercase; font-size: 1.1em; }
         .job { margin-bottom: 20px; }
-        .job-title { font-weight: bold; color: var(--secondary); display: flex; justify-content: space-between; }
+        .job-title { font-weight: bold; color: var(--secondary); display: flex; justify-content: space-between; border-bottom: 1px solid var(--light); padding-bottom: 5px; margin-bottom: 10px; }
+        
+        /* Skills Grid */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
         .skill-category strong { display: block; margin-bottom: 5px; color: var(--accent); }
-        .tag { background: var(--light); padding: 2px 8px; border-radius: 4px; font-size: 0.85em; display: inline-block; margin: 2px; }
+        .tag { background: var(--light); padding: 4px 10px; border-radius: 4px; font-size: 0.85em; display: inline-block; margin: 3px; font-weight: 500; }
+        
+        /* Footer */
+        footer { background: var(--primary); color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        footer a { color: var(--accent); text-decoration: none; margin: 0 10px; }
+        footer a:hover { text-decoration: underline; }
+
+        /* Multi-language Logic */
+        body.lang-en [data-lang="es"] { display: none !important; }
+        body.lang-es [data-lang="en"] { display: none !important; }
+        
+        @media (max-width: 600px) {
+            .profile-header { flex-direction: column; text-align: center; }
+            .top-nav { flex-direction: column; gap: 10px; padding: 15px; }
+            body { padding-top: 100px; }
+        }
     </style>
 </head>
-<body>
+<body class="lang-en"> <nav class="top-nav">
+        <div class="nav-links">
+            <a href="#summary"><i class="fas fa-user"></i> <span data-lang="en">Profile</span><span data-lang="es">Perfil</span></a>
+            <a href="#experience"><i class="fas fa-briefcase"></i> <span data-lang="en">Experience</span><span data-lang="es">Experiencia</span></a>
+            <a href="#projects"><i class="fas fa-code"></i> <span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a>
+        </div>
+        <div class="nav-actions">
+            <button class="btn-lang" onclick="toggleLanguage()">
+                <span data-lang="en">Ver en Español</span>
+                <span data-lang="es">View in English</span>
+            </button>
+            <a href="https://storage.googleapis.com/tu-bucket/CV_Jorge_Aviles.pdf" target="_blank" class="btn-download">
+                <i class="fas fa-file-pdf"></i> <span data-lang="en">Download CV</span><span data-lang="es">Descargar CV</span>
+            </a>
+        </div>
+    </nav>
+
     <div class="container">
-        <header>
-            <h1>Jorge Luis Avilés Medina</h1>
-            <div class="subtitle">Product Design & Engineering Lead | Automation Specialist</div>
-            <div class="contact-info">
-                <span><i class="fas fa-map-marker-alt"></i> San Juan del Rio, Queretaro</span>
-                <span><i class="fas fa-envelope"></i> jorge.aviles@gmx.com</span>
-                <span><i class="fab fa-linkedin"></i> linkedin.com/in/jorge-aviles-mx</span>
+        <header class="profile-header">
+            <div class="profile-photo">
+                <img src="https://raw.githubusercontent.com/javilesm/javilesm.github.io/main/profile.jpg" alt="Jorge Luis Avilés Medina">
+            </div>
+            <div class="profile-info">
+                <h1>Jorge Luis Avilés Medina</h1>
+                <div class="subtitle">Product Design & Engineering Lead | Automation Specialist</div>
+                <div class="contact-info">
+                    <span><i class="fas fa-map-marker-alt"></i> San Juan del Rio, Queretaro</span>
+                    <span><i class="fas fa-envelope"></i> jorge.aviles@gmx.com</span>
+                    <span><i class="fab fa-linkedin"></i> linkedin.com/in/jorge-aviles-mx</span>
+                </div>
             </div>
         </header>
 
         <section id="summary">
-            <h2>Professional Summary</h2>
-            <p>Manufacturing engineer specialized in advanced mechanical design, CAD automation, and reverse engineering. Expert in GD&T (ASME Y14.5 / ISO 1101), industrial metrology, and materials science. Proven track record in optimizing engineering workflows via <strong>Python, iLogic, and VBA</strong>.</p>
+            <h2 data-lang="en">Professional Summary</h2>
+            <h2 data-lang="es">Resumen Profesional</h2>
+            
+            <p data-lang="en">Manufacturing engineer specialized in advanced mechanical design, CAD automation, and reverse engineering. Expert in GD&T (ASME Y14.5 / ISO 1101), industrial metrology, and materials science. Proven track record in optimizing engineering workflows via <strong>Python, iLogic, and VBA</strong>.</p>
+            <p data-lang="es">Ingeniero de manufactura especializado en diseño mecánico avanzado, automatización CAD e ingeniería inversa. Experto en tolerancias geométricas (GD&T ASME Y14.5 / ISO 1101), metrología industrial y ciencia de materiales. Experiencia probada en la optimización de flujos de trabajo de ingeniería mediante <strong>Python, iLogic y VBA</strong>.</p>
         </section>
 
         <section id="experience">
-            <h2>Professional Experience</h2>
+            <h2 data-lang="en">Professional Experience</h2>
+            <h2 data-lang="es">Experiencia Profesional</h2>
+            
             <div class="job">
                 <div class="job-title">
                     <span>Product Designer | Perficom</span>
-                    <span>Dec 2025 – Present</span>
+                    <span data-lang="en">Dec 2025 – Present</span>
+                    <span data-lang="es">Dic 2025 – Actual</span>
                 </div>
-                <ul>
+                <ul data-lang="en">
                     <li>Led technical auditing of CAD models and complex assemblies.</li>
                     <li>Developed the corporate "Technical Notes Manual" for standardization.</li>
-                    <li>Optimized components with critical tolerances.</li>
+                    <li>Optimized components with critical tolerances up to 0.025 mm (0.001 in).</li>
                     <li>Automated workflows using Autodesk Inventor API, iLogic, and VB.NET.</li>
                 </ul>
+                <ul data-lang="es">
+                    <li>Liderazgo en la auditoría técnica de modelos CAD y ensambles complejos.</li>
+                    <li>Desarrollo del "Manual de Notas Técnicas" corporativo para estandarización.</li>
+                    <li>Optimización de componentes con tolerancias críticas de hasta 0.025 mm (0.001 in).</li>
+                    <li>Automatización de flujos de trabajo utilizando la API de Autodesk Inventor, iLogic y VB.NET.</li>
+                </ul>
             </div>
-            </section>
+        </section>
 
         <section id="skills">
-            <h2>Technical Skills</h2>
+            <h2 data-lang="en">Technical Skills</h2>
+            <h2 data-lang="es">Habilidades Técnicas</h2>
+            
             <div class="skills-grid">
                 <div class="skill-category">
-                    <strong>Design & Engineering</strong>
-                    <span class="tag">Autodesk Inventor</span> <span class="tag">CATIA V5</span><span class="tag">SolidWorks</span> <span class="tag">AutoCAD</span>
+                    <strong data-lang="en">Design & Engineering</strong>
+                    <strong data-lang="es">Diseño e Ingeniería</strong>
+                    <span class="tag">Autodesk Inventor</span> <span class="tag">CATIA V5</span> <span class="tag">SolidWorks</span> <span class="tag">AutoCAD</span>
                     <span class="tag">GD&T</span> <span class="tag">Metrology</span> <span class="tag">Reverse Engineering</span>
                 </div>
                 <div class="skill-category">
-                    <strong>Programming & Cloud</strong>
+                    <strong data-lang="en">Programming & Cloud</strong>
+                    <strong data-lang="es">Programación y Nube</strong>
                     <span class="tag">Python</span> <span class="tag">FastAPI</span> <span class="tag">iLogic</span> 
                     <span class="tag">VBA / VB.NET</span> <span class="tag">GCP</span> <span class="tag">AWS</span>
                 </div>
@@ -78,12 +154,37 @@
         </section>
 
         <section id="projects">
-            <h2>Key Projects</h2>
+            <h2 data-lang="en">Key Projects</h2>
+            <h2 data-lang="es">Proyectos Destacados</h2>
+            
             <div class="job">
                 <strong>PointForge3D</strong>
-                <p>Cloud-based pipeline using Python and FastAPI to convert 2D references into 3D point clouds, deployed on GCP G2 instances.</p>
+                <p data-lang="en">Cloud-based pipeline using Python and FastAPI to convert 2D references into 3D point clouds, deployed on GCP G2 instances.</p>
+                <p data-lang="es">Pipeline en la nube utilizando Python y FastAPI para convertir referencias 2D en nubes de puntos 3D, desplegado en instancias G2 de GCP.</p>
             </div>
         </section>
     </div>
+
+    <footer>
+        <p>
+            <a href="https://linkedin.com/in/jorge-aviles-mx" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> | 
+            <a href="https://github.com/javilesm" target="_blank"><i class="fab fa-github"></i> GitHub</a> | 
+            <a href="https://storage.googleapis.com/tu-bucket/CV_Jorge_Aviles.pdf" target="_blank"><i class="fas fa-cloud-download-alt"></i> <span data-lang="en">Download PDF Resume</span><span data-lang="es">Descargar CV en PDF</span></a>
+        </p>
+        <p>&copy; 2026 Jorge Luis Avilés Medina. <span data-lang="en">All rights reserved.</span><span data-lang="es">Todos los derechos reservados.</span></p>
+    </footer>
+
+    <script>
+        function toggleLanguage() {
+            const body = document.body;
+            if (body.classList.contains('lang-en')) {
+                body.classList.replace('lang-en', 'lang-es');
+                document.documentElement.lang = 'es';
+            } else {
+                body.classList.replace('lang-es', 'lang-en');
+                document.documentElement.lang = 'en';
+            }
+        }
+    </script>
 </body>
 </html>
