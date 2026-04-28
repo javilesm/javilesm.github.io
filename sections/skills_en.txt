@@ -1,6 +1,49 @@
-## 🛠️ Technical Stack
+<div class="skills-grid">
+    <div class="skill-category">
+        <strong><i class="fas fa-drafting-compass"></i> Advanced Design & CAD</strong>
+        <span class="tag">Autodesk Inventor</span>
+        <span class="tag">SolidWorks</span>
+        <span class="tag">CATIA V5</span>
+        <span class="tag">AutoCAD</span>
+        <span class="tag">Parametric Modeling</span>
+        <span class="tag">Sheet Metal & Composites</span>
+    </div>
+    
+    <div class="skill-category">
+        <strong><i class="fas fa-cogs"></i> Engineering & Manufacturing</strong>
+        <span class="tag">GD&T (ASME Y14.5 / ISO 1101)</span>
+        <span class="tag">Reverse Engineering</span>
+        <span class="tag">Industrial Metrology</span>
+        <span class="tag">Material Science</span>
+        <span class="tag">FEA</span>
+        <span class="tag">Machining & Welding</span>
+    </div>
+    
+    <div class="skill-category">
+        <strong><i class="fas fa-laptop-code"></i> Software & Automation</strong>
+        <span class="tag">Python</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">iLogic</span>
+        <span class="tag">VBA / VB.NET</span>
+        <span class="tag">PowerShell & Bash</span>
+        <span class="tag">CAD API Integration</span>
+    </div>
 
-- **Design & Engineering:** Autodesk Inventor (API/iLogic), SolidWorks, CATIA V5, GD&T (ASME Y14.5 / ISO 1101), Industrial Metrology.
-- **Programming:** Python (FastAPI, NumPy), VB.NET, VBA, PowerShell.
-- **Cloud & DevOps:** Google Cloud Platform (GCP), AWS, Git/GitHub, CI/CD for Engineering Workflows.
-- **Manufacturing:** Tooling Design, Reverse Engineering, Injection Molding, Material Science (Polymers & Exotic Alloys).
+    <div class="skill-category">
+        <strong><i class="fas fa-cloud"></i> Cloud Architectures</strong>
+        <span class="tag">GCP (Google Cloud Platform)</span>
+        <span class="tag">AWS</span>
+        <span class="tag">Cloud-based 3D Processing</span>
+        <span class="tag">Data Analytics</span>
+    </div>
+
+    <div class="skill-category">
+        <strong><i class="fas fa-clipboard-check"></i> Quality & Management</strong>
+        <span class="tag">Lean Manufacturing</span>
+        <span class="tag">Six Sigma Tools</span>
+        <span class="tag">AS9100 & ISO 9001</span>
+        <span class="tag">Core Tools</span>
+        <span class="tag">TPM</span>
+        <span class="tag">Project Management</span>
+    </div>
+</div>
