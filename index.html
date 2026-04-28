@@ -21,13 +21,23 @@
         .nav-links a { color: white; text-decoration: none; margin-right: 20px; font-size: 0.9em; transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent); }
         .nav-actions { display: flex; gap: 15px; align-items: center; }
-        .btn-lang { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 5px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .btn-lang:hover { background: var(--accent); color: white; }
-        .btn-download { background: var(--accent); color: white; padding: 5px 15px; text-decoration: none; border-radius: 4px; font-size: 0.9em; font-weight: bold; transition: background 0.3s; }
         
-        .container { max-width: 900px; margin: 20px auto; background: white; padding: 40px; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
+        /* Language Dropdown Menu */
+        .lang-menu { position: relative; display: inline-block; }
+        .btn-lang { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 15px; border-radius: 4px; cursor: pointer; font-size: 0.95em; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .btn-lang:hover { border-color: var(--accent); background: rgba(52, 152, 219, 0.1); }
+        .btn-lang i { font-size: 1.2em; color: var(--accent); } /* Ícono estilo Google Translate */
         
-        /* Profile Header */
+        .lang-dropdown { display: none; position: absolute; right: 0; background-color: white; min-width: 140px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border-radius: 4px; z-index: 1001; overflow: hidden; margin-top: 5px; }
+        .lang-menu:hover .lang-dropdown { display: block; }
+        .lang-dropdown a { color: var(--text); padding: 10px 15px; text-decoration: none; display: flex; align-items: center; gap: 10px; font-size: 0.9em; transition: background 0.2s; }
+        .lang-dropdown a:hover { background-color: var(--light); color: var(--accent); font-weight: 500; }
+
+        .btn-download { background: var(--accent); color: white; padding: 6px 15px; text-decoration: none; border-radius: 4px; font-size: 0.9em; font-weight: bold; transition: background 0.3s; display: flex; align-items: center; gap: 8px; }
+        .btn-download:hover { background: #2980b9; }
+        
+        /* Containers & Profile */
+        .container { max-width: 900px; margin: 20px auto; background: white; padding: 40px; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; min-height: 500px; }
         .profile-header { display: flex; align-items: center; gap: 30px; border-bottom: 2px solid var(--primary); padding-bottom: 20px; margin-bottom: 30px; }
         .profile-photo img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid var(--light); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         .profile-info h1 { margin: 0; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
@@ -36,23 +46,27 @@
         .contact-info i { color: var(--accent); }
         
         /* Dynamic Sections CSS */
-        section { margin-bottom: 30px; animation: fadeIn 0.5s ease-in; }
-        h2 { border-left: 5px solid var(--accent); padding-left: 15px; color: var(--primary); text-transform: uppercase; font-size: 1.1em; }
+        section { margin-bottom: 30px; animation: fadeIn 0.4s ease-in; }
+        h2 { border-left: 5px solid var(--accent); padding-left: 15px; color: var(--primary); text-transform: uppercase; font-size: 1.1em; margin-bottom: 15px; }
         .job { margin-bottom: 20px; }
         .job-title { font-weight: bold; color: var(--secondary); display: flex; justify-content: space-between; border-bottom: 1px solid var(--light); padding-bottom: 5px; margin-bottom: 10px; }
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
         .skill-category strong { display: block; margin-bottom: 5px; color: var(--accent); }
         .tag { background: var(--light); padding: 4px 10px; border-radius: 4px; font-size: 0.85em; display: inline-block; margin: 3px; font-weight: 500; }
         
+        /* Error/Loading States */
+        .loading-state { text-align: center; color: var(--secondary); padding: 40px; font-style: italic; }
+        .error-card { background: #fee; border-left: 4px solid #e74c3c; padding: 10px 15px; color: #c0392b; font-size: 0.9em; margin-bottom: 15px; border-radius: 0 4px 4px 0; }
+        
         /* Footer */
         footer { background: var(--primary); color: white; text-align: center; padding: 20px; margin-top: 40px; }
         footer a { color: var(--accent); text-decoration: none; margin: 0 10px; }
         
-        /* CSS Language Toggle */
+        /* CSS Language Toggle (Static Elements) */
         body.lang-en [data-lang="es"] { display: none !important; }
         body.lang-es [data-lang="en"] { display: none !important; }
         
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="lang-en">
@@ -64,10 +78,18 @@
             <a href="#projects"><i class="fas fa-code"></i> <span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a>
         </div>
         <div class="nav-actions">
-            <button class="btn-lang" onclick="toggleLanguage()">
-                <span data-lang="en">Ver en Español</span>
-                <span data-lang="es">View in English</span>
-            </button>
+            
+            <div class="lang-menu">
+                <button class="btn-lang">
+                    <i class="fa-solid fa-language"></i> 
+                    <span id="current-lang-label">English</span>
+                </button>
+                <div class="lang-dropdown">
+                    <a href="#" onclick="changeLanguage('en'); return false;">🇺🇸 English</a>
+                    <a href="#" onclick="changeLanguage('es'); return false;">🇲🇽 Español</a>
+                </div>
+            </div>
+
             <a href="https://storage.googleapis.com/tu-bucket/CV_Jorge_Aviles.pdf" target="_blank" class="btn-download">
                 <i class="fas fa-file-pdf"></i> <span data-lang="en">Download CV</span><span data-lang="es">Descargar CV</span>
             </a>
@@ -90,8 +112,9 @@
             </div>
         </header>
 
-        <main id="dynamic-content-container"></main>
-
+        <main id="dynamic-content-container">
+            <div class="loading-state">Loading engineering profile...</div>
+        </main>
     </div>
 
     <footer>
@@ -103,72 +126,79 @@
     </footer>
 
     <script>
-        // --- MOTOR DEL CMS ---
-        // Para añadir nuevas secciones, simplemente agrégalas a esta lista.
-        // El orden en esta lista es el orden en el que aparecerán en la página.
+        // CONFIGURACIÓN DEL CMS
         const cvSections = [
-            { id: 'summary', titleEn: 'Professional Summary', titleEs: 'Resumen Profesional' },
-            { id: 'experience', titleEn: 'Professional Experience', titleEs: 'Experiencia Profesional' },
-            { id: 'skills', titleEn: 'Technical Skills', titleEs: 'Habilidades Técnicas' },
-            { id: 'projects', titleEn: 'Key Projects', titleEs: 'Proyectos Destacados' }
-            // Ejemplo de escalabilidad futura:
-            // { id: 'volunteering', titleEn: 'Volunteering & Mentorship', titleEs: 'Voluntariado y Mentoría' },
-            // { id: 'teaching', titleEn: 'Teaching Experience', titleEs: 'Experiencia Docente' }
+            { id: 'summary', title_en: 'Professional Summary', title_es: 'Resumen Profesional' },
+            { id: 'experience', title_en: 'Professional Experience', title_es: 'Experiencia Profesional' },
+            { id: 'skills', title_en: 'Technical Skills', title_es: 'Habilidades Técnicas' },
+            { id: 'projects', title_en: 'Key Projects', title_es: 'Proyectos Destacados' }
         ];
 
         let currentLang = 'en';
 
+        // Lógica de carga tolerante a fallos
         async function loadDynamicSections() {
             const container = document.getElementById('dynamic-content-container');
-            container.innerHTML = ''; // Limpiar contenedor al cambiar idioma
+            
+            // Variable para acumular el HTML y evitar parpadeos
+            let compiledHTML = '';
+            let hasErrors = false;
 
             for (const sec of cvSections) {
+                const filePath = `./sections/${sec.id}_${currentLang}.txt`;
                 try {
-                    // Intenta hacer fetch del archivo correspondiente en la carpeta /sections
-                    const response = await fetch(`./sections/${sec.id}_${currentLang}.txt`);
+                    const response = await fetch(filePath);
+                    const sectionTitle = currentLang === 'en' ? sec.title_en : sec.title_es;
                     
                     if (response.ok) {
                         const htmlFragment = await response.text();
-                        const sectionTitle = currentLang === 'en' ? sec.titleEn : sec.titleEs;
-                        
-                        // Construir el bloque HTML de la sección
-                        const sectionElement = `
+                        compiledHTML += `
                             <section id="${sec.id}">
                                 <h2>${sectionTitle}</h2>
-                                <div class="section-body">
-                                    ${htmlFragment}
+                                <div class="section-body">${htmlFragment}</div>
+                            </section>
+                        `;
+                    } else {
+                        // En lugar de ocultar todo el CV, muestra un recuadro de advertencia (útil para debuggear)
+                        compiledHTML += `
+                            <section id="${sec.id}">
+                                <h2>${sectionTitle}</h2>
+                                <div class="error-card">
+                                    <i class="fas fa-exclamation-triangle"></i> 
+                                    <strong>Missing File:</strong> Ensure <code>${sec.id}_${currentLang}.txt</code> is uploaded to the /sections folder.
                                 </div>
                             </section>
                         `;
-                        
-                        container.insertAdjacentHTML('beforeend', sectionElement);
-                    } else {
-                        // Si el archivo no existe (ej. aún no escribes el voluntariado), lo ignora silenciosamente
-                        console.log(`Info: La sección '${sec.id}' no se cargó (archivo ${sec.id}_${currentLang}.txt no encontrado).`);
+                        hasErrors = true;
                     }
                 } catch (error) {
-                    console.error(`Error de red al cargar la sección ${sec.id}:`, error);
+                    console.error(`Network error loading ${filePath}:`, error);
                 }
             }
+
+            // Actualiza el DOM de una sola vez
+            container.innerHTML = compiledHTML;
         }
 
-        function toggleLanguage() {
+        // Controlador del Menú de Idiomas
+        function changeLanguage(lang) {
+            currentLang = lang;
             const body = document.body;
-            if (body.classList.contains('lang-en')) {
-                body.classList.replace('lang-en', 'lang-es');
-                document.documentElement.lang = 'es';
-                currentLang = 'es';
-            } else {
-                body.classList.replace('lang-es', 'lang-en');
-                document.documentElement.lang = 'en';
-                currentLang = 'en';
-            }
-            // Recargar todas las secciones dinámicas en el nuevo idioma
+            
+            // Actualizar clases y metadatos
+            body.className = `lang-${lang}`;
+            document.documentElement.lang = lang;
+            
+            // Actualizar la etiqueta del botón principal
+            const labelMap = { 'en': 'English', 'es': 'Español' };
+            document.getElementById('current-lang-label').innerText = labelMap[lang];
+
+            // Cargar contenido
             loadDynamicSections();
         }
 
         // Ejecutar carga inicial
-        window.onload = loadDynamicSections;
+        window.onload = () => changeLanguage('en');
     </script>
 </body>
 </html>
