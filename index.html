@@ -3,273 +3,1034 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jorge Luis Avilés Medina | Product Design & Engineering</title>
+    <title>Jorge Luis Avilés Medina | Mechanical Design Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&family=Newsreader:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #34495e;
-            --accent: #3498db;
-            --text: #333;
-            --light: #ecf0f1;
-            --nav-bg: #1a252f;
+            --bg:        #0d0f12;
+            --surface:   #141720;
+            --border:    #1f2433;
+            --accent:    #4fc3f7;
+            --accent2:   #f7c948;
+            --accent3:   #6ee7b7;
+            --text:      #e2e8f0;
+            --muted:     #64748b;
+            --tag-bg:    #1a2035;
+            --tag-hover: #1e3a5f;
+            --mono:      'DM Mono', monospace;
+            --display:   'Syne', sans-serif;
+            --serif:     'Newsreader', serif;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; background: #f4f7f6; padding-top: 60px; }
-        
-        /* Nav & Static Header */
-        .top-nav { position: fixed; top: 0; left: 0; width: 100%; background: var(--nav-bg); color: white; display: flex; justify-content: space-between; align-items: center; padding: 10px 40px; box-sizing: border-box; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .nav-links a { color: white; text-decoration: none; margin-right: 20px; font-size: 0.9em; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--accent); }
-        .nav-actions { display: flex; gap: 15px; align-items: center; }
-        
-        /* Language Dropdown Menu */
-        .lang-menu { position: relative; display: inline-block; }
-        .btn-lang { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 15px; border-radius: 4px; cursor: pointer; font-size: 0.95em; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
-        .btn-lang:hover { border-color: var(--accent); background: rgba(52, 152, 219, 0.1); }
-        .btn-lang i { font-size: 1.2em; color: var(--accent); } 
-        
-        .lang-dropdown { display: none; position: absolute; right: 0; background-color: white; min-width: 140px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border-radius: 4px; z-index: 1001; overflow: hidden; margin-top: 5px; }
-        .lang-menu:hover .lang-dropdown { display: block; }
-        .lang-dropdown a { color: var(--text); padding: 10px 15px; text-decoration: none; display: flex; align-items: center; gap: 10px; font-size: 0.9em; transition: background 0.2s; }
-        .lang-dropdown a:hover { background-color: var(--light); color: var(--accent); font-weight: 500; }
 
-        .btn-download { background: var(--accent); color: white; padding: 6px 15px; text-decoration: none; border-radius: 4px; font-size: 0.9em; font-weight: bold; transition: background 0.3s; display: flex; align-items: center; gap: 8px; }
-        .btn-download:hover { background: #2980b9; }
-        
-        /* Containers & Profile */
-        .container { max-width: 900px; margin: 20px auto; background: white; padding: 40px; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; min-height: 500px; }
-        .profile-header { display: flex; align-items: center; gap: 30px; border-bottom: 2px solid var(--primary); padding-bottom: 20px; margin-bottom: 30px; }
-        .profile-photo img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid var(--light); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .profile-info h1 { margin: 0; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
-        .subtitle { font-size: 1.2em; color: var(--accent); font-weight: bold; margin-bottom: 10px; }
-        .contact-info { font-size: 0.9em; display: flex; gap: 15px; flex-wrap: wrap; color: var(--secondary); }
-        .contact-info i { color: var(--accent); }
-        
-        /* Dynamic Sections CSS */
-        section { margin-bottom: 30px; animation: fadeIn 0.4s ease-in; }
-        h2 { border-left: 5px solid var(--accent); padding-left: 15px; color: var(--primary); text-transform: uppercase; font-size: 1.1em; margin-bottom: 15px; }
-        .job { margin-bottom: 20px; }
-        .job-title { font-weight: bold; color: var(--secondary); display: flex; justify-content: space-between; border-bottom: 1px solid var(--light); padding-bottom: 5px; margin-bottom: 10px; }
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .skill-category strong { display: block; margin-bottom: 5px; color: var(--accent); }
-        .tag { background: var(--light); padding: 4px 10px; border-radius: 4px; font-size: 0.85em; display: inline-block; margin: 3px; font-weight: 500; }
-        
-        /* Error/Loading States */
-        .loading-state { text-align: center; color: var(--secondary); padding: 40px; font-style: italic; }
-        .error-card { background: #fee; border-left: 4px solid #e74c3c; padding: 10px 15px; color: #c0392b; font-size: 0.9em; margin-bottom: 15px; border-radius: 0 4px 4px 0; }
-        
-        /* Footer */
-        footer { background: var(--primary); color: white; text-align: center; padding: 20px; margin-top: 40px; }
-        footer a { color: var(--accent); text-decoration: none; margin: 0 10px; }
-        
-        /* CSS Language Toggle */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--serif);
+            font-size: 16px;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* ── Grid lines background ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(79,195,247,.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(79,195,247,.03) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── TOP NAV ── */
+        .top-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; height: 56px;
+            background: rgba(13,15,18,.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-family: var(--mono);
+            font-size: .78em;
+            color: var(--accent);
+            letter-spacing: .08em;
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--muted); }
+
+        .nav-links { display: flex; gap: 28px; }
+        .nav-links a {
+            font-family: var(--mono);
+            font-size: .75em;
+            color: var(--muted);
+            text-decoration: none;
+            letter-spacing: .08em;
+            transition: color .2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+        .btn-lang {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 5px 13px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: var(--mono);
+            font-size: .72em;
+            letter-spacing: .06em;
+            transition: all .2s;
+            position: relative;
+        }
+        .btn-lang:hover { border-color: var(--accent); color: var(--accent); }
+
+        .lang-menu { position: relative; }
+        .lang-dropdown {
+            display: none; position: absolute; right: 0; top: 110%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            min-width: 130px;
+            box-shadow: 0 8px 24px rgba(0,0,0,.4);
+        }
+        .lang-menu:hover .lang-dropdown { display: block; }
+        .lang-dropdown a {
+            display: flex; align-items: center; gap: 8px;
+            padding: 9px 14px;
+            font-family: var(--mono);
+            font-size: .75em;
+            color: var(--muted);
+            text-decoration: none;
+            transition: background .15s, color .15s;
+        }
+        .lang-dropdown a:hover { background: var(--tag-hover); color: var(--accent); }
+
+        .btn-download {
+            display: flex; align-items: center; gap: 7px;
+            background: var(--accent);
+            color: #0d0f12;
+            padding: 6px 16px;
+            border-radius: 3px;
+            font-family: var(--mono);
+            font-size: .72em;
+            font-weight: 500;
+            letter-spacing: .06em;
+            text-decoration: none;
+            transition: opacity .2s;
+        }
+        .btn-download:hover { opacity: .85; }
+
+        /* ── LAYOUT ── */
+        .wrapper {
+            position: relative; z-index: 1;
+            max-width: 1020px;
+            margin: 0 auto;
+            padding: 80px 24px 60px;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 36px;
+            align-items: center;
+            padding: 48px 0 48px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 56px;
+        }
+
+        .hero-photo {
+            position: relative;
+        }
+        .hero-photo img {
+            width: 140px; height: 140px;
+            border-radius: 4px;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(20%);
+            border: 1px solid var(--border);
+        }
+        .hero-photo::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            opacity: .3;
+            pointer-events: none;
+        }
+
+        .hero-info {}
+        .hero-label {
+            font-family: var(--mono);
+            font-size: .7em;
+            color: var(--accent);
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .hero-name {
+            font-family: var(--display);
+            font-size: 2.6em;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -.02em;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .hero-title {
+            font-family: var(--mono);
+            font-size: .82em;
+            color: var(--muted);
+            letter-spacing: .04em;
+            margin-bottom: 18px;
+        }
+        .hero-contacts {
+            display: flex; flex-wrap: wrap; gap: 18px;
+        }
+        .hero-contacts a, .hero-contacts span {
+            font-family: var(--mono);
+            font-size: .72em;
+            color: var(--muted);
+            text-decoration: none;
+            display: flex; align-items: center; gap: 6px;
+            transition: color .2s;
+        }
+        .hero-contacts a:hover { color: var(--accent); }
+        .hero-contacts i { color: var(--accent); font-size: .95em; }
+
+        /* ── SECTION HEADERS ── */
+        .section-wrap { margin-bottom: 52px; }
+
+        .section-head {
+            display: flex; align-items: baseline; gap: 14px;
+            margin-bottom: 24px;
+        }
+        .section-num {
+            font-family: var(--mono);
+            font-size: .7em;
+            color: var(--accent);
+            letter-spacing: .12em;
+        }
+        .section-title {
+            font-family: var(--display);
+            font-size: 1.05em;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── SUMMARY ── */
+        .summary-text {
+            font-family: var(--serif);
+            font-size: 1.05em;
+            color: #b0bec5;
+            max-width: 720px;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.8;
+            border-left: 2px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        /* ── EXPERIENCE ── */
+        .job {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 0 28px;
+            margin-bottom: 36px;
+            padding-bottom: 36px;
+            border-bottom: 1px solid var(--border);
+            animation: fadeUp .5s ease both;
+        }
+        .job:last-child { border-bottom: none; }
+
+        .job-meta {}
+        .job-dates {
+            font-family: var(--mono);
+            font-size: .68em;
+            color: var(--accent);
+            letter-spacing: .06em;
+            margin-bottom: 4px;
+        }
+        .job-company {
+            font-family: var(--display);
+            font-size: .95em;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+        .job-location {
+            font-family: var(--mono);
+            font-size: .65em;
+            color: var(--muted);
+        }
+
+        .job-body {}
+        .job-role {
+            font-family: var(--mono);
+            font-size: .78em;
+            color: var(--accent2);
+            letter-spacing: .04em;
+            margin-bottom: 12px;
+        }
+
+        .job-bullets { list-style: none; padding: 0; }
+        .job-bullets li {
+            font-size: .92em;
+            color: #94a3b8;
+            margin-bottom: 8px;
+            padding-left: 16px;
+            position: relative;
+            line-height: 1.65;
+        }
+        .job-bullets li::before {
+            content: '—';
+            position: absolute; left: 0;
+            color: var(--muted);
+            font-family: var(--mono);
+        }
+
+        .job-tags { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 7px; }
+
+        /* ── SKILL TAGS ── */
+        .tag {
+            font-family: var(--mono);
+            font-size: .65em;
+            letter-spacing: .06em;
+            padding: 4px 11px;
+            border-radius: 2px;
+            border: 1px solid var(--border);
+            background: var(--tag-bg);
+            color: var(--muted);
+            cursor: pointer;
+            transition: all .2s;
+            user-select: none;
+            display: inline-flex; align-items: center; gap: 5px;
+        }
+        .tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--tag-hover);
+        }
+        .tag.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(79,195,247,.12);
+        }
+        .tag.tag-green { border-color: #1d3d30; color: var(--accent3); }
+        .tag.tag-green:hover, .tag.tag-green.active {
+            border-color: var(--accent3);
+            background: rgba(110,231,183,.1);
+            color: var(--accent3);
+        }
+        .tag.tag-yellow { border-color: #3d3018; color: var(--accent2); }
+        .tag.tag-yellow:hover, .tag.tag-yellow.active {
+            border-color: var(--accent2);
+            background: rgba(247,201,72,.1);
+            color: var(--accent2);
+        }
+
+        /* ── FILTER BAR ── */
+        .filter-bar {
+            margin-bottom: 20px;
+            padding: 14px 18px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+        }
+        .filter-label {
+            font-family: var(--mono);
+            font-size: .65em;
+            color: var(--muted);
+            letter-spacing: .1em;
+            margin-right: 4px;
+        }
+        .filter-clear {
+            font-family: var(--mono);
+            font-size: .62em;
+            color: var(--muted);
+            cursor: pointer;
+            padding: 3px 9px;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            background: transparent;
+            transition: all .2s;
+            margin-left: auto;
+        }
+        .filter-clear:hover { color: #fff; border-color: #fff; }
+        .filter-clear.hidden { display: none; }
+
+        /* ── PROJECTS ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 22px 24px;
+            transition: border-color .25s, transform .2s;
+            animation: fadeUp .5s ease both;
+        }
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .project-card.dimmed { opacity: .25; pointer-events: none; }
+
+        .proj-year {
+            font-family: var(--mono);
+            font-size: .65em;
+            color: var(--accent);
+            letter-spacing: .1em;
+            margin-bottom: 6px;
+        }
+        .proj-name {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 1em;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .proj-desc {
+            font-size: .88em;
+            color: #7a8fa8;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+        .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+        /* ── SKILLS SECTION ── */
+        .skills-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .skill-group {}
+        .skill-group-name {
+            font-family: var(--mono);
+            font-size: .65em;
+            color: var(--accent);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+        /* ── CERTS ── */
+        .cert-list { display: flex; flex-direction: column; gap: 10px; }
+        .cert-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            transition: border-color .2s;
+        }
+        .cert-item:hover { border-color: var(--accent2); }
+        .cert-name { font-family: var(--mono); font-size: .78em; color: #fff; }
+        .cert-inst { font-size: .82em; color: var(--muted); margin-top: 2px; }
+        .cert-year {
+            font-family: var(--mono);
+            font-size: .68em;
+            color: var(--accent2);
+            letter-spacing: .06em;
+        }
+
+        /* ── HIGHLIGHT ANIMATION ── */
+        @keyframes pulseHighlight {
+            0%   { box-shadow: 0 0 0 0 rgba(79,195,247,.5); }
+            70%  { box-shadow: 0 0 0 10px rgba(79,195,247,0); }
+            100% { box-shadow: 0 0 0 0 rgba(79,195,247,0); }
+        }
+        .job.highlight-match { animation: pulseHighlight .7s ease; }
+
+        /* ── FILTER STATE ── */
+        .job.dimmed { opacity: .2; transition: opacity .3s; }
+        .job.visible { opacity: 1; transition: opacity .3s; }
+
+        /* ── FOOTER ── */
+        footer {
+            position: relative; z-index: 1;
+            border-top: 1px solid var(--border);
+            padding: 28px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            font-family: var(--mono);
+            font-size: .68em;
+            color: var(--muted);
+        }
+        footer a { color: var(--muted); text-decoration: none; transition: color .2s; }
+        footer a:hover { color: var(--accent); }
+        .footer-links { display: flex; gap: 20px; }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── LANGUAGE TOGGLE ── */
         body.lang-en [data-lang="es"] { display: none !important; }
         body.lang-es [data-lang="en"] { display: none !important; }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* =========================================
-           RESPONSIVE DESIGN (MOBILE & TABLET)
-           ========================================= */
+        /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
-            body { 
-                padding-top: 0; /* Quita el padding porque la barra ya no es fija en móvil */
-            }
-            
-            /* Navbar Móvil: Relativa para no robar espacio de lectura */
-            .top-nav { 
-                position: relative; 
-                flex-direction: column; 
-                padding: 15px 10px; 
-                gap: 15px; 
-            }
-            
-            .nav-links { 
-                display: flex; 
-                justify-content: center; 
-                flex-wrap: wrap; 
-                gap: 15px; 
-            }
-            
-            .nav-links a { 
-                margin-right: 0; 
-            }
-            
-            .nav-actions { 
-                display: flex; 
-                justify-content: center; 
-                flex-wrap: wrap; 
-                width: 100%; 
-            }
-            
-            /* Contenedor Principal Móvil */
-            .container { 
-                margin: 15px; 
-                padding: 25px 20px; 
-            }
-            
-            /* Perfil Móvil */
-            .profile-header { 
-                flex-direction: column; 
-                text-align: center; 
-                gap: 15px; 
-            }
-            
-            .profile-photo img { 
-                width: 130px; 
-                height: 130px; 
-            }
-            
-            .profile-info h1 { 
-                font-size: 1.7em; /* Reduce el tamaño para evitar que salte a 4 líneas */
-                line-height: 1.2; 
-                margin-bottom: 5px;
-            }
-            
-            .subtitle { 
-                font-size: 1.05em; 
-            }
-            
-            .contact-info { 
-                justify-content: center; 
-                flex-direction: column; 
-                align-items: center; 
-                gap: 10px; 
-            }
+            .top-nav { padding: 0 18px; }
+            .nav-links { display: none; }
+            .hero { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 20px; }
+            .hero-name { font-size: 2em; }
+            .hero-photo::after { display: none; }
+            .hero-contacts { justify-content: center; }
+            .job { grid-template-columns: 1fr; }
+            .job-meta { display: flex; gap: 14px; flex-wrap: wrap; align-items: baseline; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .skills-columns { grid-template-columns: 1fr 1fr; }
+            footer { flex-direction: column; gap: 12px; text-align: center; }
+        }
 
-            /* Fix Menú Idioma Flotante en Móvil */
-            .lang-dropdown {
-                left: 50%;
-                transform: translateX(-50%);
-                right: auto;
-                text-align: center;
-            }
-            
-            /* Ajuste de Fechas y Títulos de Trabajo */
-            .job-title {
-                flex-direction: column;
-                gap: 5px;
-            }
+        @media (max-width: 480px) {
+            .wrapper { padding: 70px 16px 40px; }
+            .skills-columns { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body class="lang-en">
 
-    <nav class="top-nav">
-        <div class="nav-links">
-            <a href="#summary"><i class="fas fa-user"></i> <span data-lang="en">Profile</span><span data-lang="es">Perfil</span></a>
-            <a href="#experience"><i class="fas fa-briefcase"></i> <span data-lang="en">Experience</span><span data-lang="es">Experiencia</span></a>
-            <a href="#projects"><i class="fas fa-code"></i> <span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a>
-        </div>
-        <div class="nav-actions">
-            
-            <div class="lang-menu">
-                <button class="btn-lang">
-                    <i class="fa-solid fa-language"></i> 
-                    <span id="current-lang-label">English</span>
-                </button>
-                <div class="lang-dropdown">
-                    <a href="#" onclick="changeLanguage('en'); return false;">🇺🇸 English</a>
-                    <a href="#" onclick="changeLanguage('es'); return false;">🇲🇽 Español</a>
-                </div>
-            </div>
+<!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+<nav class="top-nav">
+    <a class="nav-logo" href="#"><span>./</span>jorge-aviles</a>
 
-            <a href="https://storage.googleapis.com/tu-bucket/CV_Jorge_Aviles.pdf" target="_blank" class="btn-download">
-                <i class="fas fa-file-pdf"></i> <span data-lang="en">Download CV</span><span data-lang="es">Descargar CV</span>
-            </a>
-        </div>
-    </nav>
-
-    <div class="container">
-        <header class="profile-header">
-            <div class="profile-photo">
-                <img src="https://github.com/javilesm.png" alt="Jorge Luis Avilés Medina">
-            </div>
-            <div class="profile-info">
-                <h1>Jorge Luis Avilés Medina</h1>
-                <div class="subtitle">Product Design & Engineering Lead | Automation Specialist</div>
-                <div class="contact-info">
-                    <span><i class="fas fa-map-marker-alt"></i> San Juan del Rio, Queretaro</span>
-                    <span><i class="fas fa-envelope"></i> jorge.aviles@gmx.com</span>
-                    <span><i class="fab fa-linkedin"></i> linkedin.com/in/jorge-aviles-mx</span>
-                </div>
-            </div>
-        </header>
-
-        <main id="dynamic-content-container">
-            <div class="loading-state">Loading engineering profile...</div>
-        </main>
+    <div class="nav-links">
+        <a href="#summary"><span data-lang="en">Profile</span><span data-lang="es">Perfil</span></a>
+        <a href="#experience"><span data-lang="en">Experience</span><span data-lang="es">Experiencia</span></a>
+        <a href="#projects"><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a>
+        <a href="#skills"><span data-lang="en">Skills</span><span data-lang="es">Skills</span></a>
     </div>
 
-    <footer>
-        <p>
-            <a href="https://linkedin.com/in/jorge-aviles-mx" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> | 
-            <a href="https://github.com/javilesm" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    <div class="nav-actions">
+        <div class="lang-menu">
+            <button class="btn-lang"><i class="fa-solid fa-language"></i> <span id="lang-label">EN</span></button>
+            <div class="lang-dropdown">
+                <a href="#" onclick="setLang('en');return false;">🇺🇸 English</a>
+                <a href="#" onclick="setLang('es');return false;">🇲🇽 Español</a>
+            </div>
+        </div>
+        <a href="https://storage.googleapis.com/tu-bucket/CV_Jorge_Aviles.pdf" target="_blank" class="btn-download">
+            <i class="fas fa-file-pdf"></i>
+            <span data-lang="en">Download CV</span><span data-lang="es">Descargar CV</span>
+        </a>
+    </div>
+</nav>
+
+<!-- ═══════════════════════════════ MAIN ═══════════════════════════════ -->
+<div class="wrapper">
+
+    <!-- HERO -->
+    <header class="hero" style="animation: fadeUp .6s ease both;">
+        <div class="hero-photo">
+            <img src="https://github.com/javilesm.png" alt="Jorge Luis Avilés Medina">
+        </div>
+        <div class="hero-info">
+            <div class="hero-label">Mechanical Design Engineer</div>
+            <h1 class="hero-name">Jorge Luis<br>Avilés Medina</h1>
+            <div class="hero-title">Product Design &amp; Engineering Lead · CAD Automation · GD&amp;T Expert</div>
+            <div class="hero-contacts">
+                <span><i class="fas fa-map-marker-alt"></i> San Juan del Rio, Queretaro, MX</span>
+                <a href="mailto:jorge.aviles@gmx.com"><i class="fas fa-envelope"></i> jorge.aviles@gmx.com</a>
+                <a href="https://linkedin.com/in/jorge-aviles-mx" target="_blank"><i class="fab fa-linkedin"></i> jorge-aviles-mx</a>
+                <a href="https://github.com/javilesm" target="_blank"><i class="fab fa-github"></i> javilesm</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── SUMMARY ── -->
+    <div class="section-wrap" id="summary" style="animation: fadeUp .6s .1s ease both;">
+        <div class="section-head">
+            <span class="section-num">01</span>
+            <span class="section-title"><span data-lang="en">Profile</span><span data-lang="es">Perfil</span></span>
+            <div class="section-line"></div>
+        </div>
+        <p class="summary-text" data-lang="en">
+            Mechanical Design Engineer with extensive experience in advanced mechanical design, CAD automation, reverse engineering, and product development. Expert in GD&T (ASME Y14.5 / ISO 1101), industrial metrology, and material selection. Proven ability to lead cross-functional teams, operate within safety-critical domains, and deliver precise technical documentation. Skilled in workflow automation via Python, iLogic, and VBA across the full product development lifecycle.
         </p>
-        <p>&copy; 2026 Jorge Luis Avilés Medina. <span data-lang="en">All rights reserved.</span><span data-lang="es">Todos los derechos reservados.</span></p>
-    </footer>
+        <p class="summary-text" data-lang="es">
+            Ingeniero de diseño mecánico con amplia experiencia en diseño avanzado, automatización CAD, ingeniería inversa y desarrollo de producto. Experto en GD&T (ASME Y14.5 / ISO 1101), metrología industrial y selección de materiales. Liderazgo de equipos multidisciplinarios, trabajo en dominios de seguridad crítica y documentación técnica de alta precisión. Especialista en automatización de flujos mediante Python, iLogic y VBA.
+        </p>
+    </div>
 
-    <script>
-        const cvSections = [
-            { id: 'summary', title_en: 'Professional Summary', title_es: 'Resumen Profesional' },
-            { id: 'experience', title_en: 'Professional Experience', title_es: 'Experiencia Profesional' },
-            { id: 'skills', title_en: 'Technical Skills', title_es: 'Habilidades Técnicas' },
-            { id: 'projects', title_en: 'Key Projects', title_es: 'Proyectos Destacados' }
-        ];
+    <!-- ── EXPERIENCE ── -->
+    <div class="section-wrap" id="experience">
+        <div class="section-head">
+            <span class="section-num">02</span>
+            <span class="section-title"><span data-lang="en">Experience</span><span data-lang="es">Experiencia</span></span>
+            <div class="section-line"></div>
+        </div>
 
-        let currentLang = 'en';
+        <!-- Filter bar -->
+        <div class="filter-bar" id="exp-filter-bar">
+            <span class="filter-label">FILTER BY SKILL →</span>
+            <button class="filter-clear hidden" id="filter-clear-btn" onclick="clearFilter()">✕ clear</button>
+        </div>
 
-        async function loadDynamicSections() {
-            const container = document.getElementById('dynamic-content-container');
-            let compiledHTML = '';
-            let hasErrors = false;
+        <!-- Jobs -->
+        <div id="jobs-container">
 
-            for (const sec of cvSections) {
-                const filePath = `./sections/${sec.id}_${currentLang}.txt`;
-                try {
-                    const response = await fetch(filePath);
-                    const sectionTitle = currentLang === 'en' ? sec.title_en : sec.title_es;
-                    
-                    if (response.ok) {
-                        const htmlFragment = await response.text();
-                        compiledHTML += `
-                            <section id="${sec.id}">
-                                <h2>${sectionTitle}</h2>
-                                <div class="section-body">${htmlFragment}</div>
-                            </section>
-                        `;
-                    } else {
-                        compiledHTML += `
-                            <section id="${sec.id}">
-                                <h2>${sectionTitle}</h2>
-                                <div class="error-card">
-                                    <i class="fas fa-exclamation-triangle"></i> 
-                                    <strong>Missing File:</strong> Ensure <code>${sec.id}_${currentLang}.txt</code> is uploaded to the /sections folder.
-                                </div>
-                            </section>
-                        `;
-                        hasErrors = true;
-                    }
-                } catch (error) {
-                    console.error(`Network error loading ${filePath}:`, error);
-                }
+        <div class="job" data-skills="Autodesk Inventor,iLogic,VB.NET,GD&T,Python,CAD Automation,Reverse Engineering,Metrology,CATIA V5,SolidWorks,Technical Documentation,Cost Estimation,Product Development">
+            <div class="job-meta">
+                <div class="job-dates">DEC 2025 — PRESENT</div>
+                <div class="job-company">Perficom</div>
+                <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>San Juan del Rio, Qro.</div>
+            </div>
+            <div class="job-body">
+                <div class="job-role">Mechanical Design Engineer — Product Design &amp; Engineering Lead</div>
+                <ul class="job-bullets" data-lang="en">
+                    <li>Led technical audits of CAD models and complex assemblies ensuring strict GD&T compliance across all product lines.</li>
+                    <li>Authored the corporate Technical Notes Manual — standardizing tolerances, part definition, and design specs company-wide.</li>
+                    <li>Designed components to critical manufacturing tolerances of ±0.025 mm for industrial tooling applications.</li>
+                    <li>Automated parametric workflows using Autodesk Inventor API, iLogic, and VB.NET — reducing engineering cycle times significantly.</li>
+                    <li>Executed reverse engineering and industrial metrology projects for continuous improvement of existing product lines.</li>
+                    <li>Provided sales support with technical documentation, cost estimation, and product presentations for clients.</li>
+                </ul>
+                <ul class="job-bullets" data-lang="es">
+                    <li>Lideró auditorías técnicas de modelos CAD y ensambles complejos garantizando cumplimiento GD&T en todas las líneas de producto.</li>
+                    <li>Redactó el Manual de Notas Técnicas corporativo — estandarizando tolerancias y especificaciones de diseño en toda la empresa.</li>
+                    <li>Diseñó componentes con tolerancias críticas de ±0.025 mm para aplicaciones de herramentales industriales.</li>
+                    <li>Automatizó flujos paramétricos con Inventor API, iLogic y VB.NET — reduciendo drásticamente los tiempos de ingeniería.</li>
+                    <li>Ejecutó proyectos de ingeniería inversa y metrología para mejora continua de líneas de producto existentes.</li>
+                    <li>Brindó soporte a ventas con documentación técnica, estimaciones de costos y presentaciones de producto.</li>
+                </ul>
+                <div class="job-tags">
+                    <span class="tag" onclick="filterBySkill('Autodesk Inventor')">Autodesk Inventor</span>
+                    <span class="tag" onclick="filterBySkill('iLogic')">iLogic</span>
+                    <span class="tag" onclick="filterBySkill('VB.NET')">VB.NET</span>
+                    <span class="tag" onclick="filterBySkill('GD&T')">GD&T</span>
+                    <span class="tag" onclick="filterBySkill('Reverse Engineering')">Reverse Engineering</span>
+                    <span class="tag" onclick="filterBySkill('Metrology')">Metrology</span>
+                    <span class="tag" onclick="filterBySkill('Technical Documentation')">Technical Documentation</span>
+                    <span class="tag tag-yellow" onclick="filterBySkill('Cost Estimation')">Cost Estimation</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="job" data-skills="Logistics,Material Handling,Safety,Throughput Analysis">
+            <div class="job-meta">
+                <div class="job-dates">MAY — NOV 2025</div>
+                <div class="job-company">Amazon</div>
+                <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>Queretaro, Qro.</div>
+            </div>
+            <div class="job-body">
+                <div class="job-role">Sort Center Associate FX</div>
+                <ul class="job-bullets" data-lang="en">
+                    <li>Maintained throughput and efficiency metrics in high-volume logistics sorting and palletizing operations.</li>
+                    <li>Coordinated material handling and conveyor workflow improvements within strict corporate safety standards.</li>
+                </ul>
+                <ul class="job-bullets" data-lang="es">
+                    <li>Mantuvo métricas de eficiencia y throughput en operaciones de clasificación y paletizado de alto volumen.</li>
+                    <li>Coordinó mejoras de flujo en manejo de materiales bajo estrictos lineamientos de seguridad corporativa.</li>
+                </ul>
+                <div class="job-tags">
+                    <span class="tag" onclick="filterBySkill('Material Handling')">Material Handling</span>
+                    <span class="tag" onclick="filterBySkill('Throughput Analysis')">Throughput Analysis</span>
+                    <span class="tag" onclick="filterBySkill('Safety')">Safety</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="job" data-skills="Calibration Programs,TPM,Team Leadership,Budget Management,AMOS,AMM,IPC,TEM,MPD,Airbus World,Cost Estimation,Production Planning,Preventive Maintenance,Safety">
+            <div class="job-meta">
+                <div class="job-dates">APR — OCT 2021</div>
+                <div class="job-company">VivaAerobus</div>
+                <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>Monterrey, N.L.</div>
+            </div>
+            <div class="job-body">
+                <div class="job-role">Tooling Control Engineer</div>
+                <ul class="job-bullets" data-lang="en">
+                    <li>Designed and executed the tooling calibration program, managing TAT dispatch to workshops and ensuring airworthiness compliance with manufacturer and Engineering department requirements.</li>
+                    <li>Guaranteed tooling availability for line maintenance and major service execution, controlling work orders and issuing monthly tooling expiration reports.</li>
+                    <li>Administered department budget and coordinated procurement of supplies, equipment, repairs, and capital assets.</li>
+                    <li>Supervised junior technicians and engineers in preventive/corrective maintenance and calibration operations.</li>
+                    <li>Applied AMM, IPC, TEM, MPD technical manuals and the AMOS / Airbus World system to plan and control tooling compliance across all production units.</li>
+                    <li>Correlated OEE data and TPM KPIs, presenting structured performance reports to senior management.</li>
+                </ul>
+                <ul class="job-bullets" data-lang="es">
+                    <li>Diseñó y ejecutó el programa de calibración de herramientas, gestionando TAT y asegurando cumplimiento de aeronavegabilidad.</li>
+                    <li>Garantizó disponibilidad de herramientas para mantenimiento de línea y servicio mayor, emitiendo reportes mensuales de vencimiento.</li>
+                    <li>Administró el presupuesto del departamento y coordinó compras de suministros, equipos y activos de capital.</li>
+                    <li>Supervisó técnicos e ingenieros junior en mantenimiento preventivo/correctivo y operaciones de calibración.</li>
+                    <li>Aplicó manuales AMM, IPC, TEM, MPD y el sistema AMOS / Airbus World para la planeación y control de herramientas.</li>
+                    <li>Correlacionó datos OEE y KPIs de TPM, presentando reportes de desempeño a la alta dirección.</li>
+                </ul>
+                <div class="job-tags">
+                    <span class="tag tag-green" onclick="filterBySkill('AMOS')">AMOS</span>
+                    <span class="tag tag-green" onclick="filterBySkill('AMM')">AMM / IPC / TEM / MPD</span>
+                    <span class="tag tag-green" onclick="filterBySkill('Airbus World')">Airbus World</span>
+                    <span class="tag" onclick="filterBySkill('Calibration Programs')">Calibration Programs</span>
+                    <span class="tag" onclick="filterBySkill('TPM')">TPM</span>
+                    <span class="tag" onclick="filterBySkill('Team Leadership')">Team Leadership</span>
+                    <span class="tag tag-yellow" onclick="filterBySkill('Budget Management')">Budget Management</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="job" data-skills="CATIA V5,GD&T,CAD Modeling,Technical Documentation,Lean Manufacturing,Six Sigma,ISO 9001,AS9100,Cost Estimation,Team Leadership,Product Development,Safety">
+            <div class="job-meta">
+                <div class="job-dates">NOV 2015 — JUN 2020</div>
+                <div class="job-company">Bombardier<br>Aerospace</div>
+                <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>Queretaro, Qro.</div>
+            </div>
+            <div class="job-body">
+                <div class="job-role">Tooling Engineer — Agente de Herramientas (QUE03006)</div>
+                <ul class="job-bullets" data-lang="en">
+                    <li>Maintained tooling asset condition and managed TSR (Tooling Service Request) prioritization aligned with production needs.</li>
+                    <li>Created detailed CATIA V5 CAD models and GD&T-compliant drawings for aerospace tooling components and assemblies.</li>
+                    <li>Executed preventive maintenance plans and tool re-certification schedules on time and per regulatory requirements.</li>
+                    <li>Developed tooling verification and control policies per QAD 3.8.7.21, tracking KPIs via departmental scorecard.</li>
+                    <li>Contributed to continuous improvement of production processes — root cause analysis and cross-team problem solving.</li>
+                    <li>Performed tooling cost estimations and drove cost-reduction via design standardization and process simplification.</li>
+                    <li>Trained junior engineers in CATIA V5, GD&T, and aerospace tooling best practices.</li>
+                </ul>
+                <ul class="job-bullets" data-lang="es">
+                    <li>Mantuvo el buen estado de herramentales y gestionó priorización de TSRs alineados con necesidades de producción.</li>
+                    <li>Creó modelos CAD detallados en CATIA V5 y planos con GD&T para componentes y ensambles aeroespaciales.</li>
+                    <li>Ejecutó planes de mantenimiento preventivo y recertificaciones de herramientas dentro de los plazos reglamentarios.</li>
+                    <li>Desarrolló políticas de verificación y control conforme a QAD 3.8.7.21, con seguimiento de KPIs en scorecard.</li>
+                    <li>Contribuyó a la mejora continua de procesos productivos mediante análisis de causa raíz y soporte multidisciplinario.</li>
+                    <li>Realizó estimaciones de costos de herramientas e impulsó reducción de costos vía estandarización de diseños.</li>
+                    <li>Capacitó ingenieros junior en CATIA V5, GD&T y mejores prácticas de herramentales aeroespaciales.</li>
+                </ul>
+                <div class="job-tags">
+                    <span class="tag tag-green" onclick="filterBySkill('CATIA V5')">CATIA V5</span>
+                    <span class="tag" onclick="filterBySkill('GD&T')">GD&T</span>
+                    <span class="tag" onclick="filterBySkill('CAD Modeling')">CAD Modeling</span>
+                    <span class="tag" onclick="filterBySkill('Lean Manufacturing')">Lean Manufacturing</span>
+                    <span class="tag" onclick="filterBySkill('Six Sigma')">Six Sigma</span>
+                    <span class="tag tag-green" onclick="filterBySkill('AS9100')">AS9100</span>
+                    <span class="tag" onclick="filterBySkill('Cost Estimation')">Cost Estimation</span>
+                    <span class="tag" onclick="filterBySkill('Team Leadership')">Team Leadership</span>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- end #jobs-container -->
+    </div>
+
+    <!-- ── PROJECTS ── -->
+    <div class="section-wrap" id="projects">
+        <div class="section-head">
+            <span class="section-num">03</span>
+            <span class="section-title"><span data-lang="en">Key Projects</span><span data-lang="es">Proyectos</span></span>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+
+            <div class="project-card" data-proj-skills="Python,FastAPI,GCP,3D Modeling,CAD Automation,Product Development">
+                <div class="proj-year">2026</div>
+                <div class="proj-name">PointForge3D</div>
+                <p class="proj-desc" data-lang="en">Python / FastAPI pipeline on GCP G2 instances for automated conversion of 2D engineering references to 3D point clouds and surface generation. Applies mechanical engineering and product development principles at scale.</p>
+                <p class="proj-desc" data-lang="es">Pipeline en Python / FastAPI sobre instancias G2 de GCP para conversión automatizada de referencias 2D a nubes de puntos 3D y generación de superficies. Aplica principios de ingeniería mecánica y desarrollo de producto a escala.</p>
+                <div class="proj-tags">
+                    <span class="tag tag-green" onclick="filterBySkill('Python')">Python</span>
+                    <span class="tag tag-green" onclick="filterBySkill('FastAPI')">FastAPI</span>
+                    <span class="tag tag-green" onclick="filterBySkill('GCP')">GCP</span>
+                    <span class="tag" onclick="filterBySkill('3D Modeling')">3D Modeling</span>
+                    <span class="tag" onclick="filterBySkill('CAD Automation')">CAD Automation</span>
+                </div>
+            </div>
+
+            <div class="project-card" data-proj-skills="iLogic,Autodesk Inventor,VB.NET,CAD Automation,PowerShell,Product Development">
+                <div class="proj-year">2026</div>
+                <div class="proj-name">Procedural CAD Generation</div>
+                <p class="proj-desc" data-lang="en">PowerShell + iLogic algorithms for parametric import, dynamic positioning, and metadata management of part blocks (.ipt) in bulk assemblies within Autodesk Inventor. Enables system layout drawing automation at scale.</p>
+                <p class="proj-desc" data-lang="es">Algoritmos en PowerShell + iLogic para importación paramétrica, posicionamiento dinámico y gestión de metadatos de bloques (.ipt) en ensambles masivos en Autodesk Inventor. Automatiza la generación de layouts a escala.</p>
+                <div class="proj-tags">
+                    <span class="tag" onclick="filterBySkill('iLogic')">iLogic</span>
+                    <span class="tag" onclick="filterBySkill('Autodesk Inventor')">Autodesk Inventor</span>
+                    <span class="tag" onclick="filterBySkill('VB.NET')">VB.NET</span>
+                    <span class="tag" onclick="filterBySkill('CAD Automation')">CAD Automation</span>
+                </div>
+            </div>
+
+            <div class="project-card" data-proj-skills="GD&T,Metrology,Technical Documentation,Product Development">
+                <div class="proj-year">2025</div>
+                <div class="proj-name">Corporate Technical Notes Manual</div>
+                <p class="proj-desc" data-lang="en">Authored and implemented the company-wide engineering standard for tolerances, GD&T callouts, part definitions, and design specifications — harmonizing engineering documentation across all product lines at Perficom.</p>
+                <p class="proj-desc" data-lang="es">Redacción e implementación del estándar corporativo de ingeniería para tolerancias, notas GD&T, definición de piezas y especificaciones de diseño en todas las líneas de producto de Perficom.</p>
+                <div class="proj-tags">
+                    <span class="tag" onclick="filterBySkill('GD&T')">GD&T</span>
+                    <span class="tag" onclick="filterBySkill('Technical Documentation')">Technical Documentation</span>
+                    <span class="tag" onclick="filterBySkill('Metrology')">Metrology</span>
+                </div>
+            </div>
+
+            <div class="project-card" data-proj-skills="CATIA V5,GD&T,Reverse Engineering,Lean Manufacturing,AS9100">
+                <div class="proj-year">2015–2020</div>
+                <div class="proj-name">Aerospace Tooling Program</div>
+                <p class="proj-desc" data-lang="en">Full lifecycle tooling engineering for Bombardier's Queretaro facility — from CATIA V5 CAD design and GD&T documentation to preventive maintenance plans, TSR management, re-certification, and cost reduction initiatives.</p>
+                <p class="proj-desc" data-lang="es">Ingeniería de herramentales ciclo completo para la planta de Bombardier en Querétaro — desde diseño CAD en CATIA V5 y documentación GD&T hasta planes de mantenimiento preventivo, gestión de TSRs, recertificación y reducción de costos.</p>
+                <div class="proj-tags">
+                    <span class="tag tag-green" onclick="filterBySkill('CATIA V5')">CATIA V5</span>
+                    <span class="tag" onclick="filterBySkill('GD&T')">GD&T</span>
+                    <span class="tag" onclick="filterBySkill('Reverse Engineering')">Reverse Engineering</span>
+                    <span class="tag tag-green" onclick="filterBySkill('AS9100')">AS9100</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── SKILLS ── -->
+    <div class="section-wrap" id="skills">
+        <div class="section-head">
+            <span class="section-num">04</span>
+            <span class="section-title"><span data-lang="en">Technical Skills</span><span data-lang="es">Habilidades</span></span>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="skills-columns">
+            <div class="skill-group">
+                <div class="skill-group-name">CAD / Mechanical Design</div>
+                <div class="skill-tags">
+                    <span class="tag" onclick="filterBySkill('Autodesk Inventor')">Autodesk Inventor</span>
+                    <span class="tag" onclick="filterBySkill('CATIA V5')">CATIA V5</span>
+                    <span class="tag" onclick="filterBySkill('SolidWorks')">SolidWorks</span>
+                    <span class="tag" onclick="filterBySkill('CAD Modeling')">AutoCAD 2D/3D</span>
+                    <span class="tag" onclick="filterBySkill('3D Modeling')">3D Modeling</span>
+                    <span class="tag" onclick="filterBySkill('GD&T')">GD&T ASME Y14.5</span>
+                    <span class="tag" onclick="filterBySkill('GD&T')">ISO 1101</span>
+                    <span class="tag" onclick="filterBySkill('Metrology')">Metrology</span>
+                    <span class="tag" onclick="filterBySkill('Reverse Engineering')">Reverse Engineering</span>
+                    <span class="tag" onclick="filterBySkill('Product Development')">FEA</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <div class="skill-group-name">Coding &amp; Cloud</div>
+                <div class="skill-tags">
+                    <span class="tag tag-green" onclick="filterBySkill('Python')">Python</span>
+                    <span class="tag tag-green" onclick="filterBySkill('FastAPI')">FastAPI</span>
+                    <span class="tag tag-green" onclick="filterBySkill('GCP')">GCP</span>
+                    <span class="tag tag-green" onclick="filterBySkill('iLogic')">iLogic</span>
+                    <span class="tag tag-green" onclick="filterBySkill('VB.NET')">VB.NET</span>
+                    <span class="tag tag-green" onclick="filterBySkill('CAD Automation')">CAD Automation</span>
+                    <span class="tag tag-green" onclick="filterBySkill('CAD Automation')">VBA / Macros</span>
+                    <span class="tag tag-green" onclick="filterBySkill('CAD Automation')">PowerShell</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <div class="skill-group-name">Quality &amp; Systems</div>
+                <div class="skill-tags">
+                    <span class="tag tag-yellow" onclick="filterBySkill('AS9100')">AS9100</span>
+                    <span class="tag tag-yellow" onclick="filterBySkill('ISO 9001')">ISO 9001</span>
+                    <span class="tag tag-yellow" onclick="filterBySkill('Lean Manufacturing')">Lean Manufacturing</span>
+                    <span class="tag tag-yellow" onclick="filterBySkill('Six Sigma')">Six Sigma</span>
+                    <span class="tag tag-yellow" onclick="filterBySkill('TPM')">TPM</span>
+                    <span class="tag tag-yellow" onclick="filterBySkill('Cost Estimation')">Cost Estimation</span>
+                    <span class="tag tag-yellow" onclick="filterBySkill('Technical Documentation')">Technical Docs</span>
+                    <span class="tag tag-yellow" onclick="filterBySkill('Budget Management')">SAP</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <div class="skill-group-name">Aerospace MRO</div>
+                <div class="skill-tags">
+                    <span class="tag tag-green" onclick="filterBySkill('AMOS')">AMOS</span>
+                    <span class="tag tag-green" onclick="filterBySkill('Airbus World')">Airbus World</span>
+                    <span class="tag tag-green" onclick="filterBySkill('AMM')">AMM / IPC / TEM / MPD</span>
+                    <span class="tag" onclick="filterBySkill('Calibration Programs')">Calibration Programs</span>
+                    <span class="tag" onclick="filterBySkill('Preventive Maintenance')">Preventive Maintenance</span>
+                    <span class="tag" onclick="filterBySkill('Safety')">Safety Critical</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <div class="skill-group-name">Manufacturing</div>
+                <div class="skill-tags">
+                    <span class="tag" onclick="filterBySkill('Material Handling')">Material Handling</span>
+                    <span class="tag" onclick="filterBySkill('Throughput Analysis')">Throughput Analysis</span>
+                    <span class="tag" onclick="filterBySkill('Product Development')">Product Development</span>
+                    <span class="tag" onclick="filterBySkill('Product Development')">Sheet Metal Design</span>
+                    <span class="tag" onclick="filterBySkill('Product Development')">Machining</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <div class="skill-group-name">Leadership &amp; Soft Skills</div>
+                <div class="skill-tags">
+                    <span class="tag" onclick="filterBySkill('Team Leadership')">Team Leadership</span>
+                    <span class="tag" onclick="filterBySkill('Team Leadership')">Cross-functional Collab</span>
+                    <span class="tag" onclick="filterBySkill('Budget Management')">Budget Management</span>
+                    <span class="tag" onclick="filterBySkill('Technical Documentation')">Presentation Skills</span>
+                    <span class="tag" onclick="filterBySkill('Team Leadership')">Mentoring</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── CERTS & EDUCATION ── -->
+    <div class="section-wrap" id="education">
+        <div class="section-head">
+            <span class="section-num">05</span>
+            <span class="section-title"><span data-lang="en">Education &amp; Certifications</span><span data-lang="es">Educación y Certificaciones</span></span>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="cert-list">
+            <div class="cert-item">
+                <div>
+                    <div class="cert-name">B.S. Manufacturing Engineering</div>
+                    <div class="cert-inst">Universidad Tecnológica de San Juan del Río</div>
+                </div>
+                <div class="cert-year">SJR, QRO</div>
+            </div>
+            <div class="cert-item">
+                <div>
+                    <div class="cert-name">Advanced Machining</div>
+                    <div class="cert-inst">Instituto Queretano de Herramentales</div>
+                </div>
+                <div class="cert-year">2023</div>
+            </div>
+            <div class="cert-item">
+                <div>
+                    <div class="cert-name">Project Management</div>
+                    <div class="cert-inst">SPC Group</div>
+                </div>
+                <div class="cert-year">2020</div>
+            </div>
+            <div class="cert-item">
+                <div>
+                    <div class="cert-name">GD&T — 4 Levels</div>
+                    <div class="cert-inst">Qualixoma</div>
+                </div>
+                <div class="cert-year">2020</div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- end .wrapper -->
+
+<!-- FOOTER -->
+<footer>
+    <span>&copy; 2026 Jorge Luis Avilés Medina</span>
+    <div class="footer-links">
+        <a href="https://linkedin.com/in/jorge-aviles-mx" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/javilesm" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        <a href="mailto:jorge.aviles@gmx.com"><i class="fas fa-envelope"></i> Email</a>
+    </div>
+</footer>
+
+<script>
+    // ── LANGUAGE ──
+    function setLang(lang) {
+        document.body.className = 'lang-' + lang;
+        document.documentElement.lang = lang;
+        document.getElementById('lang-label').innerText = lang.toUpperCase();
+    }
+
+    // ── ACTIVE FILTER STATE ──
+    let activeSkill = null;
+
+    function filterBySkill(skill) {
+        if (activeSkill === skill) { clearFilter(); return; }
+        activeSkill = skill;
+
+        // Highlight all tags matching this skill
+        document.querySelectorAll('.tag').forEach(t => {
+            t.classList.toggle('active', t.textContent.trim().includes(skill) ||
+                (t.onclick && t.onclick.toString().includes(skill)));
+        });
+
+        // Filter jobs
+        document.querySelectorAll('.job').forEach(job => {
+            const skills = (job.dataset.skills || '').split(',').map(s => s.trim());
+            const match = skills.some(s => s.toLowerCase().includes(skill.toLowerCase()) ||
+                skill.toLowerCase().includes(s.toLowerCase()));
+            job.classList.toggle('dimmed', !match);
+            if (match) {
+                job.classList.add('highlight-match');
+                setTimeout(() => job.classList.remove('highlight-match'), 800);
             }
-            container.innerHTML = compiledHTML;
+        });
+
+        // Filter project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            const skills = (card.dataset.projSkills || '').split(',').map(s => s.trim());
+            const match = skills.some(s => s.toLowerCase().includes(skill.toLowerCase()) ||
+                skill.toLowerCase().includes(s.toLowerCase()));
+            card.classList.toggle('dimmed', !match);
+        });
+
+        // Scroll to experience
+        document.getElementById('experience').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Update filter bar label
+        const bar = document.getElementById('exp-filter-bar');
+        let pill = document.getElementById('active-filter-pill');
+        if (!pill) {
+            pill = document.createElement('span');
+            pill.id = 'active-filter-pill';
+            pill.className = 'tag active';
+            bar.insertBefore(pill, document.getElementById('filter-clear-btn'));
         }
+        pill.textContent = skill;
+        document.getElementById('filter-clear-btn').classList.remove('hidden');
+    }
 
-        function changeLanguage(lang) {
-            currentLang = lang;
-            const body = document.body;
-            body.className = `lang-${lang}`;
-            document.documentElement.lang = lang;
-            
-            const labelMap = { 'en': 'English', 'es': 'Español' };
-            document.getElementById('current-lang-label').innerText = labelMap[lang];
+    function clearFilter() {
+        activeSkill = null;
+        document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.job').forEach(j => j.classList.remove('dimmed'));
+        document.querySelectorAll('.project-card').forEach(c => c.classList.remove('dimmed'));
+        const pill = document.getElementById('active-filter-pill');
+        if (pill) pill.remove();
+        document.getElementById('filter-clear-btn').classList.add('hidden');
+    }
 
-            loadDynamicSections();
-        }
+    // ── SCROLL REVEAL ──
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.style.opacity = '1';
+                e.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.08 });
 
-        window.onload = () => changeLanguage('en');
-    </script>
+    document.querySelectorAll('.job, .project-card, .skill-group, .cert-item').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(14px)';
+        el.style.transition = `opacity .5s ${i * 0.05}s ease, transform .5s ${i * 0.05}s ease`;
+        observer.observe(el);
+    });
+</script>
 </body>
 </html>
