@@ -163,25 +163,25 @@
     <!-- ═══════════════════════════════════════════════
          THEME / BROWSER META
     ═══════════════════════════════════════════════ -->
-    <meta name="theme-color"         content="#eef1f6">
-    <meta name="msapplication-TileColor" content="#eef1f6">
-    <meta name="color-scheme"        content="light">
+    <meta name="theme-color"         content="#0d1117">
+    <meta name="msapplication-TileColor" content="#0d1117">
+    <meta name="color-scheme"        content="dark">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&family=Newsreader:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg:        #eef1f6;
-            --surface:   #ffffff;
-            --border:    #d4dae6;
-            --accent:    #1a6fa8;
+            --bg:        #f8f9fb;
+            --surface:   #f8fafc;
+            --border:    #e2e8f0;
+            --accent:    #1558a0;
             --accent2:   #b45309;
             --accent3:   #0d7a5f;
-            --text:      #1a2233;
+            --text:      #000000;
             --muted:     #64748b;
-            --tag-bg:    #e8eff8;
-            --tag-hover: #cfe2f5;
+            --tag-bg:    #f1f5f9;
+            --tag-hover: #dbeafe;
             --mono:      'DM Mono', monospace;
             --display:   'Syne', sans-serif;
             --serif:     'Newsreader', serif;
@@ -206,8 +206,8 @@
             position: fixed;
             inset: 0;
             background-image:
-                linear-gradient(rgba(26,111,168,.055) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(26,111,168,.055) 1px, transparent 1px);
+                linear-gradient(rgba(79,195,247,.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(79,195,247,.03) 1px, transparent 1px);
             background-size: 48px 48px;
             pointer-events: none;
             z-index: 0;
@@ -217,15 +217,15 @@
         .top-nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 40px; height: 56px;
-            background: rgba(238,241,246,.92);
+            padding: 0 48px; height: 68px;
+            background: rgba(13,17,23,.88);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 2px solid var(--accent);  
         }
 
         .nav-logo {
             font-family: var(--mono);
-            font-size: .78em;
+            font-size: .88em;
             color: var(--accent);
             letter-spacing: .08em;
             text-decoration: none;
@@ -235,7 +235,7 @@
         .nav-links { display: flex; gap: 28px; }
         .nav-links a {
             font-family: var(--mono);
-            font-size: .75em;
+            font-size: .82em;
             color: var(--muted);
             text-decoration: none;
             letter-spacing: .08em;
@@ -285,7 +285,7 @@
         .btn-download {
             display: flex; align-items: center; gap: 7px;
             background: var(--accent);
-            color: #0d0f12;
+            color: #ffffff;
             padding: 6px 16px;
             border-radius: 3px;
             font-family: var(--mono);
@@ -302,7 +302,7 @@
             position: relative; z-index: 1;
             max-width: 1020px;
             margin: 0 auto;
-            padding: 80px 24px 60px;
+            padding: 94px 24px 60px;
         }
 
         /* ── HERO ── */
@@ -407,14 +407,51 @@
         /* ── SUMMARY ── */
         .summary-text {
             font-family: var(--serif);
-            font-size: 1.05em;
-            color: #475569;
-            max-width: 720px;
-            font-style: italic;
+            font-size: 1.20em;
+            color: #000000;
+            max-width: 100%;          /* mismo ancho que el contenedor */
+            font-style: normal;
             font-weight: 300;
             line-height: 1.8;
             border-left: 2px solid var(--accent);
             padding-left: 20px;
+        }
+
+        /* Negritas interactivas dentro del summary */
+        .summary-text strong {
+            font-weight: 700;
+            color: var(--accent);
+            cursor: pointer;
+            position: relative;
+            transition: color .2s;
+            border-bottom: 1px dotted var(--accent);
+            padding-bottom: 1px;
+        }
+        .summary-text strong:hover {
+            color: var(--accent2);
+            border-bottom-color: var(--accent2);
+        }
+        /* Tooltip al hover */
+        .summary-text strong[data-tip]::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text);
+            color: var(--bg);
+            font-family: var(--mono);
+            font-size: .65em;
+            font-weight: 400;
+            white-space: nowrap;
+            padding: 5px 10px;
+            border-radius: 3px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s;
+        }
+        .summary-text strong[data-tip]:hover::after {
+            opacity: 1;
         }
 
         /* ── EXPERIENCE ── */
@@ -442,8 +479,23 @@
             font-size: .95em;
             font-weight: 700;
             color: var(--text);
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
+        .job-logo {
+            margin: 6px 0 6px;
+        }
+        .job-logo img {
+            height: 64px;
+            width: auto;
+            max-width: 130px;
+            object-fit: contain;
+            filter: grayscale(20%);
+            opacity: .65;
+            display: block;
+            mix-blend-mode: multiply;
+            transition: opacity .2s, filter .2s;
+        }
+        .job-logo img:hover { opacity: 1; filter: grayscale(0%); }
         .job-location {
             font-family: var(--mono);
             font-size: .65em;
@@ -453,7 +505,7 @@
         .job-body {}
         .job-role {
             font-family: var(--mono);
-            font-size: .78em;
+            font-size: .88em;
             color: var(--accent2);
             letter-spacing: .04em;
             margin-bottom: 12px;
@@ -462,7 +514,7 @@
         .job-bullets { list-style: none; padding: 0; }
         .job-bullets li {
             font-size: .92em;
-            color: #334155;
+            color: #031022;
             margin-bottom: 8px;
             padding-left: 16px;
             position: relative;
@@ -500,18 +552,18 @@
         .tag.active {
             border-color: var(--accent);
             color: var(--accent);
-            background: rgba(26,111,168,.1);
+            background: rgba(79,195,247,.1);
         }
-        .tag.tag-green { border-color: #b2d8cd; color: var(--accent3); }
+        .tag.tag-green { border-color: #1d3d30; color: var(--accent3); }
         .tag.tag-green:hover, .tag.tag-green.active {
             border-color: var(--accent3);
-            background: rgba(13,122,95,.08);
+            background: rgba(110,231,183,.1);
             color: var(--accent3);
         }
-        .tag.tag-yellow { border-color: #e8cfa0; color: var(--accent2); }
+        .tag.tag-yellow { border-color: #3d3018; color: var(--accent2); }
         .tag.tag-yellow:hover, .tag.tag-yellow.active {
             border-color: var(--accent2);
-            background: rgba(180,83,9,.08);
+            background: rgba(247,201,72,.1);
             color: var(--accent2);
         }
 
@@ -522,14 +574,28 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 4px;
-            display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: center;
         }
         .filter-label {
             font-family: var(--mono);
-            font-size: .65em;
+            font-size: .62em;
             color: var(--muted);
             letter-spacing: .1em;
-            margin-right: 4px;
+            white-space: nowrap;
+            min-width: 72px;
+        }
+        .filter-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
         }
         .filter-clear {
             font-family: var(--mono);
@@ -543,8 +609,19 @@
             transition: all .2s;
             margin-left: auto;
         }
-        .filter-clear:hover { color: var(--text); border-color: var(--text); }
+        .filter-clear:hover { color: #fff; border-color: #fff; }
         .filter-clear.hidden { display: none; }
+        .chip-company {
+            background: rgba(100,116,139,.07);
+            color: var(--muted);
+            border-color: rgba(100,116,139,.28);
+        }
+        .chip-company:hover, .chip-company.active {
+            background: rgba(100,116,139,.16);
+            border-color: var(--muted);
+            color: var(--text);
+            box-shadow: 0 0 0 3px rgba(100,116,139,.1);
+        }
 
         /* ── PROJECTS ── */
         .projects-grid {
@@ -583,7 +660,7 @@
         }
         .proj-desc {
             font-size: .88em;
-            color: #475569;
+            color: #94a3b8;
             line-height: 1.6;
             margin-bottom: 14px;
         }
@@ -631,9 +708,9 @@
 
         /* ── HIGHLIGHT ANIMATION ── */
         @keyframes pulseHighlight {
-            0%   { box-shadow: 0 0 0 0 rgba(26,111,168,.35); }
-            70%  { box-shadow: 0 0 0 10px rgba(26,111,168,0); }
-            100% { box-shadow: 0 0 0 0 rgba(26,111,168,0); }
+            0%   { box-shadow: 0 0 0 0 rgba(79,195,247,.4); }
+            70%  { box-shadow: 0 0 0 10px rgba(79,195,247,0); }
+            100% { box-shadow: 0 0 0 0 rgba(79,195,247,0); }
         }
         .job.highlight-match { animation: pulseHighlight .7s ease; }
 
@@ -672,6 +749,7 @@
             object-fit: contain;
             filter: grayscale(30%);
             opacity: .75;
+            mix-blend-mode: multiply;
             transition: filter .2s, opacity .2s;
         }
         .company-logo-link:hover img {
@@ -734,6 +812,268 @@
             .wrapper { padding: 70px 16px 40px; }
             .skills-columns { grid-template-columns: 1fr; }
         }
+
+        /* ── INDUSTRY / SECTOR CHIPS ── */
+        .chips-row {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin-top: 16px;
+        }
+        .chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-family: var(--mono);
+            font-size: .67em;
+            letter-spacing: .07em;
+            padding: 5px 13px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all .2s;
+            user-select: none;
+        }
+        .chip-industry {
+            background: rgba(79,195,247,.07);
+            color: var(--accent);
+            border-color: rgba(79,195,247,.2);
+        }
+        .chip-industry:hover, .chip-industry.active {
+            background: rgba(79,195,247,.16);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(79,195,247,.1);
+        }
+        .chip-sector {
+            background: rgba(110,231,183,.06);
+            color: var(--accent3);
+            border-color: rgba(110,231,183,.18);
+        }
+        .chip-sector:hover, .chip-sector.active {
+            background: rgba(110,231,183,.13);
+            border-color: var(--accent3);
+            box-shadow: 0 0 0 3px rgba(110,231,183,.1);
+        }
+        .chips-label {
+            font-family: var(--mono);
+            font-size: .62em;
+            color: var(--muted);
+            letter-spacing: .1em;
+            align-self: center;
+            margin-right: 2px;
+            white-space: nowrap;
+        }
+        .chips-divider {
+            width: 1px; height: 18px;
+            background: var(--border);
+            align-self: center;
+            margin: 0 8px;
+        }
+
+        /* ── GA INSIGHT BADGE on job ── */
+        .ga-badge {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-family: var(--mono);
+            font-size: .6em;
+            color: var(--muted);
+            padding: 3px 9px;
+            border: 1px dashed var(--border);
+            border-radius: 3px;
+            margin-top: 10px;
+            cursor: default;
+            transition: border-color .2s;
+        }
+        .ga-badge:hover { border-color: #e37400; color: #e37400; }
+        .ga-badge i { font-size: .85em; color: #e37400; }
+
+        /* ── CONTACT SECTION ── */
+        #contact { margin-bottom: 0; }
+        .contact-section {
+            background: linear-gradient(135deg, #1a2a3a 0%, #0f1c2d 100%);
+            border-radius: 8px;
+            padding: 52px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-section::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(79,195,247,.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(79,195,247,.04) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+        }
+        .contact-inner { position: relative; z-index: 1; }
+        .contact-eyebrow {
+            font-family: var(--mono);
+            font-size: .68em;
+            color: #4fc3f7;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .contact-headline {
+            font-family: var(--display);
+            font-size: 1.85em;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
+            letter-spacing: -.01em;
+            margin-bottom: 12px;
+            max-width: 580px;
+        }
+        .contact-sub {
+            font-family: var(--serif);
+            font-size: 1em;
+            color: #94a3b8;
+            font-style: italic;
+            max-width: 520px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            max-width: 640px;
+        }
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            font-family: var(--mono);
+            font-size: .78em;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.12);
+            color: #e2e8f0;
+            padding: 11px 14px;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color .2s, background .2s;
+            width: 100%;
+        }
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder { color: #94a3b8; }
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            border-color: #4fc3f7;
+            background: rgba(79,195,247,.06);
+        }
+        .contact-form select option { background: #1a2a3a; color: #e2e8f0; }
+        .contact-form textarea { grid-column: 1 / -1; resize: vertical; min-height: 110px; }
+        .contact-form .cf-full { grid-column: 1 / -1; }
+        .btn-send {
+            grid-column: 1 / -1;
+            display: flex; align-items: center; justify-content: center; gap: 9px;
+            background: #4fc3f7;
+            color: #0d1117;
+            font-family: var(--mono);
+            font-size: .78em;
+            font-weight: 600;
+            letter-spacing: .06em;
+            padding: 13px 28px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: opacity .2s, transform .15s;
+        }
+        .btn-send:hover { opacity: .88; transform: translateY(-1px); }
+        .btn-send:active { transform: translateY(0); }
+        .contact-status {
+            grid-column: 1/-1;
+            font-family: var(--mono);
+            font-size: .72em;
+            padding: 10px 14px;
+            border-radius: 4px;
+            display: none;
+        }
+        .contact-status.success { background: rgba(110,231,183,.15); color: #6ee7b7; border: 1px solid rgba(110,231,183,.3); display: block; }
+        .contact-status.error   { background: rgba(248,113,113,.12); color: #f87171; border: 1px solid rgba(248,113,113,.3); display: block; }
+
+        .contact-form .input-error {
+            border-color: #f87171 !important;
+            background: rgba(248,113,113,.08) !important;
+        }
+        .btn-send:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+            transform: none;
+        }
+        #cf-honeypot-wrap {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .contact-success-panel {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 14px;
+            max-width: 640px;
+            padding: 36px 32px;
+            background: rgba(110,231,183,.07);
+            border: 1px solid rgba(110,231,183,.22);
+            border-radius: 6px;
+            animation: fadeUp .4s ease both;
+        }
+        .cs-icon { font-size: 2.4em; color: #6ee7b7; line-height: 1; }
+        .cs-title {
+            font-family: var(--display);
+            font-size: 1.25em;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+        .cs-body {
+            font-family: var(--serif);
+            font-size: .97em;
+            color: #94a3b8;
+            font-style: italic;
+            line-height: 1.75;
+            margin: 0;
+        }
+        .cs-reset {
+            margin-top: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 1px solid rgba(110,231,183,.3);
+            color: #6ee7b7;
+            padding: 9px 18px;
+            border-radius: 4px;
+            font-family: var(--mono);
+            font-size: .72em;
+            letter-spacing: .06em;
+            cursor: pointer;
+            transition: all .2s;
+        }
+        .cs-reset:hover { background: rgba(110,231,183,.1); border-color: #6ee7b7; }
+        .contact-alternatives {
+            margin-top: 28px;
+            display: flex; flex-wrap: wrap; gap: 16px;
+        }
+        .contact-alt-link {
+            display: flex; align-items: center; gap: 8px;
+            font-family: var(--mono);
+            font-size: .72em;
+            color: #64748b;
+            text-decoration: none;
+            transition: color .2s;
+        }
+        .contact-alt-link i { color: #4fc3f7; }
+        .contact-alt-link:hover { color: #4fc3f7; }
+
+        @media (max-width: 640px) {
+            .contact-section { padding: 32px 22px; }
+            .contact-form { grid-template-columns: 1fr; }
+            .contact-form textarea { grid-column: 1; }
+            .btn-send { grid-column: 1; }
+            .contact-headline { font-size: 1.4em; }
+            .chips-row { gap: 6px; }
+            .chips-divider { display: none; }
+        }
     </style>
 </head>
 <body class="lang-en">
@@ -747,6 +1087,7 @@
         <a href="#experience"><span data-lang="en">Experience</span><span data-lang="es">Experiencia</span></a>
         <a href="#projects"><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a>
         <a href="#skills"><span data-lang="en">Skills</span><span data-lang="es">Skills</span></a>
+        <a href="#contact"><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a>
     </div>
 
     <div class="nav-actions">
@@ -781,12 +1122,13 @@
             <h1 class="hero-name">Jorge Luis<br>Avilés Medina</h1>
             <div class="hero-title">Product Design &amp; Engineering · CAD Automation · GD&amp;T</div>
             <div class="hero-contacts">
-                <span><i class="fas fa-map-marker-alt"></i> San Juan del Rio, Queretaro, MX</span>
+                <span><i class="fas fa-map-marker-alt"></i> San Juan del Rio, Queretaro, Mexico</span>
                 <a href="mailto:jorge.aviles@gmx.com"><i class="fas fa-envelope"></i> jorge.aviles@gmx.com</a>
                 <a href="https://linkedin.com/in/jorge-aviles-mx" target="_blank"><i class="fab fa-linkedin"></i> jorge-aviles-mx</a>
                 <a href="https://github.com/javilesm" target="_blank"><i class="fab fa-github"></i> javilesm</a>
                 <a href="https://www.youtube.com/@jorge_aviles_mx" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
             </div>
+
         </div>
     </header>
 
@@ -798,10 +1140,45 @@
             <div class="section-line"></div>
         </div>
         <p class="summary-text" data-lang="en">
-            Design Engineer with extensive experience in advanced mechanical design, CAD automation, reverse engineering, and product development. Skilled in GD&T (ASME Y14.5 / ISO 1101), industrial metrology, and material selection. Proven ability to lead cross-functional teams, operate within safety-critical domains, and deliver precise technical documentation. Skilled in workflow automation via Python, iLogic, and VBA across the full product development lifecycle.
+            Design Engineer with extensive experience in 
+            <strong data-tip="Autodesk Inventor · CATIA V5 · SolidWorks" onclick="filterBySkill('CAD Modeling')">advanced mechanical design</strong> 
+            and 
+            <strong data-tip="iLogic · VB.NET · Python · FastAPI" onclick="filterBySkill('CAD Automation')">CAD automation</strong>, 
+            <strong data-tip="Bombardier · VivaAerobus · Perficom" onclick="filterBySkill('Reverse Engineering')">reverse engineering</strong>, 
+            and 
+            <strong data-tip="10+ years across aerospace & commercial mfg" onclick="filterByIndustry('mfg')">product development</strong>. 
+            Expert in 
+            <strong data-tip="ASME Y14.5 · ISO 1101 · 4-level certified" onclick="filterBySkill('GD&T')">GD&T</strong> 
+            and 
+            <strong data-tip="CMM · Calipers · Gauges · Reverse Eng." onclick="filterBySkill('Metrology')">industrial metrology</strong>. 
+            Proven ability to lead 
+            <strong data-tip="Bombardier · VivaAerobus teams" onclick="filterBySkill('Team Leadership')">cross-functional teams</strong> 
+            and deliver precise 
+            <strong data-tip="Technical Notes Manual · Standards" onclick="filterBySkill('Technical Documentation')">technical documentation</strong>. 
+            Skilled in workflow automation via 
+            <strong data-tip="Python · FastAPI · GCP" onclick="filterBySkill('Python')">Python</strong>, 
+            <strong data-tip="Autodesk Inventor API" onclick="filterBySkill('iLogic')">iLogic</strong>, and 
+            <strong data-tip="Excel Macros · Parametric scripts" onclick="filterBySkill('CAD Automation')">VBA</strong> 
+            across the full product development lifecycle.
         </p>
         <p class="summary-text" data-lang="es">
-            Ingeniero de diseño mecánico con amplia experiencia en diseño avanzado, automatización CAD, ingeniería inversa y desarrollo de producto. Conocimientos en GD&T (ASME Y14.5 / ISO 1101), metrología industrial y selección de materiales. Liderazgo de equipos multidisciplinarios, trabajo en dominios de seguridad crítica y documentación técnica de alta precisión. Especialista en automatización de flujos mediante Python, iLogic y VBA.
+            Ingeniero de diseño con amplia experiencia en 
+            <strong data-tip="Inventor · CATIA V5 · SolidWorks" onclick="filterBySkill('CAD Modeling')">diseño mecánico avanzado</strong> 
+            y 
+            <strong data-tip="iLogic · VB.NET · Python" onclick="filterBySkill('CAD Automation')">automatización CAD</strong>, 
+            <strong data-tip="Metrología · Escaneo 3D" onclick="filterBySkill('Reverse Engineering')">ingeniería inversa</strong> 
+            y 
+            <strong data-tip="10+ años en manufactura" onclick="filterByIndustry('mfg')">desarrollo de producto</strong>. 
+            Experto en 
+            <strong data-tip="ASME Y14.5 · ISO 1101 · 4 niveles" onclick="filterBySkill('GD&T')">GD&T</strong> 
+            y 
+            <strong data-tip="CMM · Calibradores · Ing. Inversa" onclick="filterBySkill('Metrology')">metrología industrial</strong>. 
+            Liderazgo de 
+            <strong data-tip="Bombardier · VivaAerobus" onclick="filterBySkill('Team Leadership')">equipos multidisciplinarios</strong> 
+            y documentación técnica de alta precisión. Especialista en automatización mediante 
+            <strong data-tip="Python · FastAPI · GCP" onclick="filterBySkill('Python')">Python</strong>, 
+            <strong data-tip="API de Autodesk Inventor" onclick="filterBySkill('iLogic')">iLogic</strong> y 
+            <strong data-tip="Macros · Scripts paramétricos" onclick="filterBySkill('CAD Automation')">VBA</strong>.
         </p>
     </div>
 
@@ -816,41 +1193,53 @@
         <!-- Company logos bar -->
         <div class="company-logos">
             <span class="logos-label">JUMP TO →</span>
-            <a class="company-logo-link" href="#job-perficom" title="Perficom">
+            <a class="company-logo-link" href="#job-perficom" onclick="jumpAndFilter('job-perficom','HVAC'); return false;" title="Perficom — HVAC">
                 <img src="https://images.crunchbase.com/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/hdb4uwzimq6z77b5cvg2" alt="Perficom">
             </a>
-            <a class="company-logo-link" href="#job-amazon" title="Amazon">
-                <img src="https://images.seeklogo.com/logo-png/28/1/amazon-logo-png_seeklogo-286206.png" alt="Amazon">
+            <a class="company-logo-link" href="#job-amazon" onclick="jumpAndFilter('job-amazon','logistics'); return false;" title="Amazon — Logistics">
+                <img src="https://storage.googleapis.com/jorgeaviles_cv/amazon-seeklogo.png" alt="Amazon">
             </a>
-            <a class="company-logo-link" href="#job-viva" title="VivaAerobus">
-                <img src="https://images.seeklogo.com/logo-png/34/1/viva-aerobus-logo-png_seeklogo-341299.png" alt="VivaAerobus">
+            <a class="company-logo-link" href="#job-viva" onclick="jumpAndFilter('job-viva','aviation'); return false;" title="VivaAerobus — Aviation & MRO">
+                <img src="https://storage.googleapis.com/jorgeaviles_cv/viva-aerobus-seeklogo.png" alt="VivaAerobus">
             </a>
-            <a class="company-logo-link" href="#job-bombardier" title="Bombardier Aerospace">
-                <img src="https://images.seeklogo.com/logo-png/53/1/bombardier-logo-png_seeklogo-536364.png" alt="Bombardier Aerospace">
+            <a class="company-logo-link" href="#job-bombardier" onclick="jumpAndFilter('job-bombardier','aerospace'); return false;" title="Bombardier — Aerospace Mfg">
+                <img src="https://storage.googleapis.com/jorgeaviles_cv/bombardier-seeklogo.png" alt="Bombardier Aerospace">
             </a>
         </div>
 
-        <!-- Filter bar -->
+        <!-- Unified filter bar -->
         <div class="filter-bar" id="exp-filter-bar">
-            <span class="filter-label">FILTER BY SKILL →</span>
-            <button class="filter-clear hidden" id="filter-clear-btn" onclick="clearFilter()">✕ clear</button>
+
+            <!-- INDUSTRY row -->
+            <div class="filter-row">
+                <span class="filter-label">FILTER BY INDUSTRY →</span>
+                <span class="chip chip-industry" onclick="filterByIndustry('aerospace')" data-industry="aerospace">✈ Aerospace Mfg</span>
+                <span class="chip chip-industry" onclick="filterByIndustry('aviation')" data-industry="aviation">🛫 Aviation &amp; MRO</span>
+                <span class="chip chip-industry" onclick="filterByIndustry('logistics')" data-industry="logistics">📦 Logistics</span>
+                <span class="chip chip-industry" onclick="filterByIndustry('HVAC')" data-industry="HVAC">🏭 HVAC</span>
+            </div>
+
+            <div class="filter-divider"></div>
+
+
         </div>
 
         <!-- Jobs -->
         <div id="jobs-container">
 
-        <div class="job" id="job-perficom" data-skills="Autodesk Inventor,iLogic,VB.NET,GD&T,Python,CAD Automation,Reverse Engineering,Metrology,CATIA V5,SolidWorks,Technical Documentation,Cost Estimation,Product Development">
+        <div class="job" id="job-perficom" data-skills="Autodesk Inventor,iLogic,VB.NET,GD&T,Python,CAD Automation,Reverse Engineering,Metrology,CATIA V5,SolidWorks,Technical Documentation,Cost Estimation,Product Development" data-industry="commercial mfg sw">
             <div class="job-meta">
                 <div class="job-dates">DEC 2025 — PRESENT</div>
-                <div class="job-company">Perficom</div>
+                <div class="job-logo"><img src="https://images.crunchbase.com/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/hdb4uwzimq6z77b5cvg2" alt="Perficom"></div>
                 <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>San Juan del Rio, Qro.</div>
+                <span class="ga-badge" title="GA4: track section engagement"><i class="fa-brands fa-google"></i> section_view · HVAC</span>
             </div>
             <div class="job-body">
                 <div class="job-role">Design Engineer — Product Design &amp; Engineering</div>
                 <ul class="job-bullets" data-lang="en">
                     <li>Led technical audits of CAD models and complex assemblies ensuring strict GD&T compliance across all product lines.</li>
                     <li>Authored the corporate Technical Notes Manual — standardizing tolerances, part definition, and design specs company-wide.</li>
-                    <li>Designed and optimized mechanical components (plastic trims, PVC and aluminum extrusion profiles, sheet metal stamping, CNC machining) ensuring critical manufacturing tolerances for commercial refrigeration applications, performing system layout drawing and 3D modeling reviews.</li>
+                    <li>Designed and optimized mechanical components (plastic trims, PVC and aluminum extrusion profiles, sheet metal stamping, CNC machining) ensuring critical manufacturing tolerances for commercial refrigeration applications (HVAC), performing system layout drawing and 3D modeling reviews.</li>
                     <li>Automated parametric workflows using Autodesk Inventor API, iLogic, and VB.NET — reducing engineering cycle times significantly.</li>
                     <li>Executed reverse engineering and industrial metrology projects for continuous improvement of existing product lines.</li>
                     <li>Provided sales support with technical documentation, cost estimation, and product presentations for clients.</li>
@@ -858,7 +1247,7 @@
                 <ul class="job-bullets" data-lang="es">
                     <li>Lidero auditorías técnicas de modelos CAD y ensambles complejos garantizando cumplimiento GD&T en todas las líneas de producto.</li>
                     <li>Redacté el Manual de Notas Técnicas corporativo — estandarizando tolerancias y especificaciones de diseño en toda la empresa.</li>
-                    <li>Diseño y optimizo componentes mecánicos (molduras de plástico, perfiles de extrusión de PVC y aluminio, estampado de chapa metálica, mecanizado CNC) garantizando tolerancias de fabricación críticas para aplicaciones de refrigeración comercial, realizando revisiones de planos de diseño de sistemas y modelos 3D.</li>
+                    <li>Diseño y optimizo componentes mecánicos (molduras de plástico, perfiles de extrusión de PVC y aluminio, estampado de chapa metálica, mecanizado CNC) garantizando tolerancias de fabricación críticas para aplicaciones de refrigeración comercial (HVAC), realizando revisiones de planos de diseño de sistemas y modelos 3D.</li>
                     <li>Automatizo flujos paramétricos con Inventor API, iLogic y VB.NET — reduciendo drásticamente los tiempos de ingeniería.</li>
                     <li>Ejecuto proyectos de ingeniería inversa y metrología para mejora continua de líneas de producto existentes.</li>
                     <li>Brindo soporte a ventas con documentación técnica, estimaciones de costos y presentaciones de producto.</li>
@@ -876,11 +1265,12 @@
             </div>
         </div>
 
-        <div class="job" id="job-amazon" data-skills="Logistics,Material Handling,Safety,Throughput Analysis">
+        <div class="job" id="job-amazon" data-skills="Logistics,Material Handling,Safety,Throughput Analysis" data-industry="logistics">
             <div class="job-meta">
                 <div class="job-dates">MAY — NOV 2025</div>
-                <div class="job-company">Amazon</div>
+                <div class="job-logo"><img src="https://storage.googleapis.com/jorgeaviles_cv/amazon-seeklogo.png" alt="Amazon"></div>
                 <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>Queretaro, Qro.</div>
+                <span class="ga-badge" title="GA4: track section engagement"><i class="fa-brands fa-google"></i> section_view · logistics</span>
             </div>
             <div class="job-body">
                 <div class="job-role">Sort Center Associate FX</div>
@@ -900,11 +1290,12 @@
             </div>
         </div>
 
-        <div class="job" id="job-viva" data-skills="Calibration Programs,TPM,Team Leadership,AMOS,AMM,IPC,TEM,MPD,Airbus World,Cost Estimation,Production Planning,Preventive Maintenance,Safety">
+        <div class="job" id="job-viva" data-skills="Calibration Programs,TPM,Team Leadership,AMOS,AMM,IPC,TEM,MPD,Airbus World,Cost Estimation,Production Planning,Preventive Maintenance,Safety" data-industry="aviation quality">
             <div class="job-meta">
                 <div class="job-dates">APR — OCT 2021</div>
-                <div class="job-company">VivaAerobus</div>
+                <div class="job-logo"><img src="https://storage.googleapis.com/jorgeaviles_cv/viva-aerobus-seeklogo.png" alt="VivaAerobus"></div>
                 <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>Monterrey, N.L.</div>
+                <span class="ga-badge" title="GA4: track section engagement"><i class="fa-brands fa-google"></i> section_view · aviation_mro</span>
             </div>
             <div class="job-body">
                 <div class="job-role">Tooling Control Engineer</div>
@@ -935,11 +1326,12 @@
             </div>
         </div>
 
-        <div class="job" id="job-bombardier" data-skills="CATIA V5,GD&T,CAD Modeling,Technical Documentation,Lean Manufacturing,Budget Management,Six Sigma,ISO 9001,AS9100,Cost Estimation,Problem Solving,Product Development,Safety">
+        <div class="job" id="job-bombardier" data-skills="CATIA V5,GD&T,CAD Modeling,Technical Documentation,Lean Manufacturing,Budget Management,Six Sigma,ISO 9001,AS9100,Cost Estimation,Problem Solving,Product Development,Safety" data-industry="aerospace mfg quality">
             <div class="job-meta">
                 <div class="job-dates">NOV 2015 — JUN 2020</div>
-                <div class="job-company">Bombardier<br>Aerospace</div>
+                <div class="job-logo"><img src="https://storage.googleapis.com/jorgeaviles_cv/bombardier-seeklogo.png" alt="Bombardier Aerospace"></div>
                 <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>Queretaro, Qro.</div>
+                <span class="ga-badge" title="GA4: track section engagement"><i class="fa-brands fa-google"></i> section_view · aerospace_mfg</span>
             </div>
             <div class="job-body">
                 <div class="job-role">Tooling Engineer</div>
@@ -977,7 +1369,7 @@
                 <div class="job" id="job-bombardier" data-skills="CATIA V5,GD&T,CAD Modeling,Technical Documentation,Lean Manufacturing,Six Sigma,ISO 9001,AS9100,Cost Estimation,Team Leadership,Product Development,Safety">
             <div class="job-meta">
                 <div class="job-dates">NOV 2013 — JAN 2015</div>
-                <div class="job-company">Bombardier<br>Aerospace</div>
+                <div class="job-logo"><img src="https://storage.googleapis.com/jorgeaviles_cv/bombardier-seeklogo.png" alt="Bombardier Aerospace"></div>
                 <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>Queretaro, Qro.</div>
             </div>
             <div class="job-body">
@@ -1008,7 +1400,7 @@
                 <div class="job" id="job-bombardier" data-skills="CATIA V5,GD&T,CAD Modeling,Technical Documentation,Lean Manufacturing,Six Sigma,ISO 9001,AS9100,Cost Estimation,Team Leadership,Product Development,Safety">
             <div class="job-meta">
                 <div class="job-dates">MAY 2012 — DEC 2012</div>
-                <div class="job-company">Bombardier<br>Aerospace</div>
+                <div class="job-logo"><img src="https://storage.googleapis.com/jorgeaviles_cv/bombardier-seeklogo.png" alt="Bombardier Aerospace"></div>
                 <div class="job-location"><i class="fas fa-map-pin" style="font-size:.7em;margin-right:4px;"></i>Queretaro, Qro.</div>
             </div>
             <div class="job-body">
@@ -1247,6 +1639,98 @@
         </div>
     </div>
 
+    <!-- ── CONTACT ── -->
+    <div class="section-wrap" id="contact">
+        <div class="section-head">
+            <span class="section-num">06</span>
+            <span class="section-title"><span data-lang="en">Let's Talk</span><span data-lang="es">Hablemos</span></span>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="contact-section">
+            <div class="contact-inner">
+                <div class="contact-eyebrow" data-lang="en">Open to new opportunities</div>
+                <div class="contact-eyebrow" data-lang="es">Abierto a nuevas oportunidades</div>
+
+                <h2 class="contact-headline" data-lang="en">Do you think I could be a good fit for your company?</h2>
+                <h2 class="contact-headline" data-lang="es">¿Consideras que puedo hacer un buen fit en tu compañía?</h2>
+
+                <p class="contact-sub" data-lang="en">Let's talk — I'm always open to new challenges. Whether it's a full-time role, a consulting project, or just an interesting conversation about engineering and automation, I'd love to hear from you.</p>
+                <p class="contact-sub" data-lang="es">Platiquemos, siempre estoy abierto a nuevos retos. Ya sea un puesto de tiempo completo, un proyecto de consultoría o simplemente una conversación interesante sobre ingeniería y automatización, con gusto te escucho.</p>
+
+                <div class="contact-form" id="contact-form">
+                    <!-- honeypot anti-spam -->
+                    <div id="cf-honeypot-wrap" aria-hidden="true">
+                        <input type="text" id="cf-honeypot" name="website" autocomplete="off" tabindex="-1">
+                    </div>
+                    <input type="text"  id="cf-name"   placeholder="Your name / Tu nombre *"    autocomplete="name"  required>
+                    <input type="email" id="cf-email"  placeholder="your@email.com *"            autocomplete="email" required>
+                    <select id="cf-type" required>
+                        <option value="" disabled selected>Type of opportunity * / Tipo de oportunidad *</option>
+                        <option value="full-time">Full-time position</option>
+                        <option value="consulting">Consulting / Freelance project</option>
+                        <option value="collaboration">Technical collaboration</option>
+                        <option value="other">Just want to connect</option>
+                    </select>
+                    <select id="cf-sector" required>
+                        <option value="" disabled selected>Your industry * / Tu industria *</option>
+                        <option value="aerospace">Aerospace &amp; Defense</option>
+                        <option value="automotive">Automotive</option>
+                        <option value="commercial-mfg">Commercial Manufacturing</option>
+                        <option value="logistics">Logistics &amp; Supply Chain</option>
+                        <option value="software">Software / Automation</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <textarea id="cf-msg" placeholder="Tell me about the opportunity, project or role... * / Cuéntame sobre la oportunidad, proyecto o rol... *" required></textarea>
+                    <button class="btn-send" id="btn-send" onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                        <span data-lang="en">Send Message</span><span data-lang="es">Enviar Mensaje</span>
+                    </button>
+                </div>
+
+                <!-- Status lives OUTSIDE the form so it survives form.style.display='none' -->
+                <div class="contact-status" id="contact-status"></div>
+
+                <!-- success feedback panel (shown after send) -->
+                <div class="contact-success-panel" id="contact-success">
+                    <div class="cs-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="cs-title" data-lang="en">Message sent!</div>
+                    <div class="cs-title" data-lang="es">¡Mensaje enviado!</div>
+                    <p class="cs-body" data-lang="en">Thanks for reaching out — I'll get back to you as soon as possible.</p>
+                    <p class="cs-body" data-lang="es">Gracias por escribir — me pondré en contacto lo antes posible.</p>
+                    <button class="cs-reset" onclick="resetContactForm()">
+                        <i class="fas fa-redo-alt"></i>
+                        <span data-lang="en">Send another message</span>
+                        <span data-lang="es">Enviar otro mensaje</span>
+                    </button>
+                </div>
+
+                <div class="contact-alternatives">
+                    <a class="contact-alt-link" href="mailto:jorge.aviles@gmx.com"><i class="fas fa-envelope"></i> jorge.aviles@gmx.com</a>
+                    <a class="contact-alt-link" href="https://linkedin.com/in/jorge-aviles-mx" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/jorge-aviles-mx</a>
+                    <a class="contact-alt-link" href="https://www.youtube.com/@jorge_aviles_mx" target="_blank"><i class="fab fa-youtube"></i> YouTube Channel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── SEO: hidden structured content for crawlers ── -->
+    <!-- sitemap hint: <link rel="sitemap" type="application/xml" href="/sitemap.xml"> -->
+    <div aria-hidden="true" style="display:none">
+        <span itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">Jorge Luis Avilés Medina</span>
+            <span itemprop="jobTitle">Mechanical Design Engineer</span>
+            <span itemprop="worksFor" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">Perficom</span></span>
+            <span itemprop="alumniOf">Universidad Tecnológica de San Juan del Río</span>
+            <span itemprop="knowsAbout">GD&T ASME Y14.5, Autodesk Inventor, CATIA V5, CAD Automation, iLogic, Python, Reverse Engineering</span>
+            <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                <span itemprop="addressLocality">San Juan del Río</span>
+                <span itemprop="addressRegion">Querétaro</span>
+                <span itemprop="addressCountry">MX</span>
+            </span>
+        </span>
+    </div>
+
 </div><!-- end .wrapper -->
 
 <!-- FOOTER -->
@@ -1261,27 +1745,33 @@
 </footer>
 
 <script>
-    // ── LANGUAGE ──
+    // ══════════════════════════════════════════
+    // LANGUAGE
+    // ══════════════════════════════════════════
     function setLang(lang) {
         document.body.className = 'lang-' + lang;
         document.documentElement.lang = lang;
         document.getElementById('lang-label').innerText = lang.toUpperCase();
+        // GA4 event
+        if (typeof gtag !== 'undefined') gtag('event', 'language_switch', { lang });
     }
 
-    // ── ACTIVE FILTER STATE ──
+    // ══════════════════════════════════════════
+    // SKILL FILTER
+    // ══════════════════════════════════════════
     let activeSkill = null;
 
     function filterBySkill(skill) {
-        if (activeSkill === skill) { clearFilter(); return; }
+        if (activeSkill === skill) { clearAllFilters(); return; }
         activeSkill = skill;
+        clearIndustryFilter();
+        clearCompanyFilter();
 
-        // Highlight all tags matching this skill
         document.querySelectorAll('.tag').forEach(t => {
             t.classList.toggle('active', t.textContent.trim().includes(skill) ||
                 (t.onclick && t.onclick.toString().includes(skill)));
         });
 
-        // Filter jobs
         document.querySelectorAll('.job').forEach(job => {
             const skills = (job.dataset.skills || '').split(',').map(s => s.trim());
             const match = skills.some(s => s.toLowerCase().includes(skill.toLowerCase()) ||
@@ -1293,7 +1783,6 @@
             }
         });
 
-        // Filter project cards
         document.querySelectorAll('.project-card').forEach(card => {
             const skills = (card.dataset.projSkills || '').split(',').map(s => s.trim());
             const match = skills.some(s => s.toLowerCase().includes(skill.toLowerCase()) ||
@@ -1301,34 +1790,310 @@
             card.classList.toggle('dimmed', !match);
         });
 
-        // Scroll to experience
         document.getElementById('experience').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-        // Update filter bar label
-        const bar = document.getElementById('exp-filter-bar');
+        const row = document.getElementById('skill-filter-row');
         let pill = document.getElementById('active-filter-pill');
         if (!pill) {
             pill = document.createElement('span');
             pill.id = 'active-filter-pill';
             pill.className = 'tag active';
-            bar.insertBefore(pill, document.getElementById('filter-clear-btn'));
+            row.insertBefore(pill, document.getElementById('filter-clear-btn'));
         }
         pill.textContent = skill;
         document.getElementById('filter-clear-btn').classList.remove('hidden');
+
+        if (typeof gtag !== 'undefined') gtag('event', 'skill_filter', { skill_name: skill });
     }
 
-    function clearFilter() {
+    function clearSkillFilter() {
         activeSkill = null;
         document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.job').forEach(j => j.classList.remove('dimmed'));
         document.querySelectorAll('.project-card').forEach(c => c.classList.remove('dimmed'));
         const pill = document.getElementById('active-filter-pill');
         if (pill) pill.remove();
         document.getElementById('filter-clear-btn').classList.add('hidden');
     }
 
-    // ── SCROLL REVEAL ──
-    const observer = new IntersectionObserver((entries) => {
+    // ══════════════════════════════════════════
+    // INDUSTRY / SECTOR CHIP FILTER
+    // ══════════════════════════════════════════
+    const INDUSTRY_MAP = {
+        aerospace:      ['job-bombardier'],
+        aviation:       ['job-viva'],
+        logistics:      ['job-amazon'],
+        HVAC:           ['job-perficom'],
+        commercial:     ['job-perficom'],
+        mfg:            ['job-perficom','job-bombardier'],
+        sw:             ['job-perficom'],
+        quality:        ['job-bombardier','job-viva'],
+    };
+
+    let activeIndustry = null;
+
+    function filterByIndustry(key) {
+        if (activeIndustry === key) { clearIndustryFilter(); return; }
+        activeIndustry = key;
+        clearSkillFilter();
+        clearCompanyFilter();
+
+        document.querySelectorAll('.chip[data-industry]').forEach(c => {
+            c.classList.toggle('active', c.dataset.industry === key);
+        });
+
+        const matchIds = INDUSTRY_MAP[key] || [];
+        document.querySelectorAll('.job').forEach(job => {
+            const match = matchIds.includes(job.id);
+            job.classList.toggle('dimmed', !match);
+            if (match) {
+                job.classList.add('highlight-match');
+                setTimeout(() => job.classList.remove('highlight-match'), 800);
+            }
+        });
+
+        document.getElementById('experience').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (typeof gtag !== 'undefined') gtag('event', 'industry_filter', { industry: key });
+    }
+
+    function clearIndustryFilter() {
+        activeIndustry = null;
+        document.querySelectorAll('.chip[data-industry]').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.job').forEach(j => j.classList.remove('dimmed'));
+    }
+
+    // ══════════════════════════════════════════
+    // COMPANY FILTER
+    // ══════════════════════════════════════════
+    const COMPANY_MAP = {
+        perficom:   'job-perficom',
+        amazon:     'job-amazon',
+        viva:       'job-viva',
+        bombardier: 'job-bombardier',
+    };
+
+    let activeCompany = null;
+
+    function filterByCompany(key) {
+        if (activeCompany === key) { clearCompanyFilter(); return; }
+        activeCompany = key;
+        clearSkillFilter();
+        clearIndustryFilter();
+
+        document.querySelectorAll('.chip[data-company]').forEach(c => {
+            c.classList.toggle('active', c.dataset.company === key);
+        });
+
+        const matchId = COMPANY_MAP[key];
+        document.querySelectorAll('.job').forEach(job => {
+            const match = job.id === matchId;
+            job.classList.toggle('dimmed', !match);
+            if (match) {
+                job.classList.add('highlight-match');
+                setTimeout(() => job.classList.remove('highlight-match'), 800);
+            }
+        });
+
+        document.getElementById('experience').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (typeof gtag !== 'undefined') gtag('event', 'company_filter', { company: key });
+    }
+
+    function clearCompanyFilter() {
+        activeCompany = null;
+        document.querySelectorAll('.chip[data-company]').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.job').forEach(j => j.classList.remove('dimmed'));
+    }
+
+    function clearAllFilters() {
+        clearSkillFilter();
+        clearIndustryFilter();
+        clearCompanyFilter();
+    }
+
+    function jumpAndFilter(jobId, industry) {
+        filterByIndustry(industry);
+        setTimeout(() => {
+            const el = document.getElementById(jobId);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 80);
+    }
+
+    // ══════════════════════════════════════════
+    // GA4 — SECTION SCROLL TRACKING
+    // ══════════════════════════════════════════
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting && e.intersectionRatio > 0.3) {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'section_view', { section_id: e.target.id });
+                }
+            }
+        });
+    }, { threshold: 0.3 });
+
+    ['summary','experience','projects','skills','education','contact'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) sectionObserver.observe(el);
+    });
+
+    // GA4 — JOB CARD SCROLL TRACKING
+    const jobObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                const company = e.target.querySelector('.job-company')?.innerText?.replace(/\s+/g,' ').trim();
+                if (company && typeof gtag !== 'undefined') {
+                    gtag('event', 'job_card_view', { company });
+                }
+                jobObserver.unobserve(e.target); // fire once per session
+            }
+        });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.job').forEach(j => jobObserver.observe(j));
+
+    // GA4 — CV DOWNLOAD TRACKING
+    document.querySelectorAll('.btn-download').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (typeof gtag !== 'undefined') gtag('event', 'cv_download', { method: 'button' });
+        });
+    });
+
+    // ══════════════════════════════════════════
+    // CONTACT FORM
+    // ══════════════════════════════════════════
+    const _cfOpenTime = Date.now();
+
+    function _cfMarkError(id) {
+        document.getElementById(id).classList.add('input-error');
+    }
+    function _cfClearErrors() {
+        document.querySelectorAll('.contact-form .input-error')
+            .forEach(el => el.classList.remove('input-error'));
+        const s = document.getElementById('contact-status');
+        s.className = 'contact-status';
+        s.textContent = '';
+    }
+    function _cfSetStatus(type, msg) {
+        const s = document.getElementById('contact-status');
+        s.className = 'contact-status ' + type;
+        s.textContent = msg;
+    }
+
+    async function sendMessage() {
+
+        const btn    = document.getElementById('btn-send');
+        const form   = document.getElementById('contact-form');
+        const panel  = document.getElementById('contact-success');
+
+        _cfClearErrors();
+
+        // ── Collect values ──
+        const payload = {
+            name:    document.getElementById('cf-name').value.trim(),
+            email:   document.getElementById('cf-email').value.trim(),
+            type:    document.getElementById('cf-type').value,
+            sector:  document.getElementById('cf-sector').value,
+            message: document.getElementById('cf-msg').value.trim()
+        };
+
+        // ── Anti-spam: honeypot ──
+        if (document.getElementById('cf-honeypot').value) return;
+
+        // ── Anti-spam: minimum fill time (3 s) ──
+        if (Date.now() - _cfOpenTime < 3000) {
+            _cfSetStatus('error', '⚠ Please take a moment to fill the form carefully.');
+            return;
+        }
+
+        // ── Anti-spam: rate limit (60 s between submissions) ──
+        const lastSent = sessionStorage.getItem('_cf_last_sent');
+        if (lastSent && Date.now() - parseInt(lastSent) < 60000) {
+            const wait = Math.ceil((60000 - (Date.now() - parseInt(lastSent))) / 1000);
+            _cfSetStatus('error', `⚠ Please wait ${wait}s before sending another message.`);
+            return;
+        }
+
+        // ── Validation ──
+        let hasError = false;
+        if (!payload.name    || payload.name.length < 2)                             { _cfMarkError('cf-name');   hasError = true; }
+        if (!payload.email   || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email))  { _cfMarkError('cf-email');  hasError = true; }
+        if (!payload.type)                                                            { _cfMarkError('cf-type');   hasError = true; }
+        if (!payload.sector)                                                          { _cfMarkError('cf-sector'); hasError = true; }
+        if (!payload.message || payload.message.length < 10)                         { _cfMarkError('cf-msg');    hasError = true; }
+        if (hasError) {
+            _cfSetStatus('error', '⚠ Please fill in all required fields (marked in red).');
+            return;
+        }
+
+        // ── Loading state ──
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i><span>Sending…</span>';
+
+        let success = false;
+        let errMsg  = 'Failed to send. Please write directly to jorge.aviles@gmx.com';
+
+        try {
+            const response = await fetch(
+                'https://portfolio-contact-api-cyan.vercel.app/api/contact',
+                {
+                    method:  'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body:    JSON.stringify(payload)
+                }
+            );
+
+            // Parse body safely — API might return non-JSON on errors
+            let data = {};
+            const ct = response.headers.get('content-type') || '';
+            if (ct.includes('application/json')) {
+                data = await response.json();
+            } else {
+                await response.text(); // drain body
+            }
+
+            if (response.ok) {
+                success = true;
+                sessionStorage.setItem('_cf_last_sent', Date.now().toString());
+                if (typeof gtag !== 'undefined')
+                    gtag('event', 'contact_form_submit', {
+                        opportunity_type: payload.type,
+                        industry:         payload.sector
+                    });
+            } else {
+                errMsg = data.error || data.message || `Server error ${response.status}. Please write to jorge.aviles@gmx.com`;
+            }
+
+        } catch (err) {
+            console.error('[contact]', err);
+            errMsg = 'Network error. Please check your connection or write to jorge.aviles@gmx.com';
+        }
+
+        // ── Restore button FIRST, then update UI ──
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i>'
+            + '<span data-lang="en">Send Message</span>'
+            + '<span data-lang="es">Enviar Mensaje</span>';
+
+        if (success) {
+            // Hide form, show success panel
+            form.style.display  = 'none';
+            panel.style.display = 'flex';
+            panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+            // Show error BELOW the button (status lives outside the form)
+            _cfSetStatus('error', '⚠ ' + errMsg);
+        }
+    }
+
+    function resetContactForm() {
+        document.getElementById('contact-form').style.display = 'grid';
+        document.getElementById('contact-success').style.display = 'none';
+        _cfClearErrors();
+    }
+
+    // ══════════════════════════════════════════
+    // SCROLL REVEAL
+    // ══════════════════════════════════════════
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(e => {
             if (e.isIntersecting) {
                 e.target.style.opacity = '1';
@@ -1341,7 +2106,7 @@
         el.style.opacity = '0';
         el.style.transform = 'translateY(14px)';
         el.style.transition = `opacity .5s ${i * 0.05}s ease, transform .5s ${i * 0.05}s ease`;
-        observer.observe(el);
+        revealObserver.observe(el);
     });
 </script>
 </body>
